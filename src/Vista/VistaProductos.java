@@ -14,7 +14,7 @@ public class VistaProductos extends javax.swing.JFrame {
     /**
      * Creates new form VistaProductos
      */
-    public VistaProductos() {
+    public VistaProductos()  {
         initComponents();
     }
 
