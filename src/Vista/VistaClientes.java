@@ -36,6 +36,7 @@ public class VistaClientes extends javax.swing.JFrame {
         jTNombre = new javax.swing.JTextField();
         jTDireccion = new javax.swing.JTextField();
         jTCorreo = new javax.swing.JTextField();
+        jBNuevoCliente = new javax.swing.JButton();
         jPDatosComplementarios = new javax.swing.JPanel();
         jLURL = new javax.swing.JLabel();
         jLTelefono = new javax.swing.JLabel();
@@ -64,6 +65,14 @@ public class VistaClientes extends javax.swing.JFrame {
 
         jLDireccion.setText("Direccion: ");
 
+        jTNombre.setEditable(false);
+
+        jTDireccion.setEditable(false);
+
+        jTCorreo.setEditable(false);
+
+        jBNuevoCliente.setText("Nuevo Cliente");
+
         javax.swing.GroupLayout jPDatosPrincipalesLayout = new javax.swing.GroupLayout(jPDatosPrincipales);
         jPDatosPrincipales.setLayout(jPDatosPrincipalesLayout);
         jPDatosPrincipalesLayout.setHorizontalGroup(
@@ -77,7 +86,10 @@ public class VistaClientes extends javax.swing.JFrame {
                     .addComponent(jLNombre))
                 .addGap(18, 18, 18)
                 .addGroup(jPDatosPrincipalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTIdentificacion)
+                    .addGroup(jPDatosPrincipalesLayout.createSequentialGroup()
+                        .addComponent(jTIdentificacion)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBNuevoCliente))
                     .addComponent(jTNombre)
                     .addComponent(jTDireccion)
                     .addComponent(jTCorreo))
@@ -89,7 +101,8 @@ public class VistaClientes extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPDatosPrincipalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLIdentificacion)
-                    .addComponent(jTIdentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTIdentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBNuevoCliente))
                 .addGap(18, 18, 18)
                 .addGroup(jPDatosPrincipalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLNombre)
@@ -112,6 +125,10 @@ public class VistaClientes extends javax.swing.JFrame {
         jLTelefono.setText("Telefono: ");
 
         jLCiudad.setText("Ciudad:");
+
+        jTURL.setEditable(false);
+
+        jTTelefono.setEditable(false);
 
         jCCiudad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Barranquilla", "Bogotá", "Cali", "Cartagena", "Medellin" }));
         jCCiudad.addActionListener(new java.awt.event.ActionListener() {
@@ -267,6 +284,7 @@ public class VistaClientes extends javax.swing.JFrame {
     public javax.swing.JButton jBConsultar;
     public javax.swing.JButton jBEliminar;
     public javax.swing.JButton jBModificar;
+    public javax.swing.JButton jBNuevoCliente;
     public javax.swing.JButton jBRegistrar;
     public javax.swing.JButton jBSalir;
     public javax.swing.JComboBox<String> jCCiudad;

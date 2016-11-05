@@ -99,7 +99,11 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jTIdentificacion" alignment="0" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jTIdentificacion" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jBNuevoCliente" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <Component id="jTNombre" alignment="0" max="32767" attributes="0"/>
                       <Component id="jTDireccion" max="32767" attributes="0"/>
                       <Component id="jTCorreo" alignment="0" max="32767" attributes="0"/>
@@ -115,6 +119,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLIdentificacion" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jTIdentificacion" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jBNuevoCliente" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -175,16 +180,33 @@
           </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="jTNombre">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="jTDireccion">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="jTCorreo">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JButton" name="jBNuevoCliente">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Nuevo Cliente"/>
+          </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
@@ -276,11 +298,17 @@
           </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="jTURL">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="jTTelefono">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
