@@ -15,6 +15,7 @@ public class VistaCotizaciones extends javax.swing.JFrame {
      * Creates new form VistaCotizacion
      */
     public VistaCotizaciones() {
+         getContentPane().setBackground(new java.awt.Color(255,255,255));
         initComponents();
     }
 
