@@ -11,7 +11,7 @@ import java.io.Serializable;
  *
  * @author ESTACION
  */
-public class ClientesVO implements Serializable {
+public class Clientes implements Serializable {
 
     private int identificacion;
     private String nombre;
@@ -21,9 +21,9 @@ public class ClientesVO implements Serializable {
     private int telefono;
     private String ciudad;
     
-    public ClientesVO(){}
+    public Clientes(){}
 
-    public ClientesVO(int identificacion, String nombre, String direccion, String correo, String URL, int telefono, String ciudad) {
+    public Clientes(int identificacion, String nombre, String direccion, String correo, String URL, int telefono, String ciudad) {
         this.identificacion = identificacion;
         this.nombre = nombre;
         this.direccion = direccion;

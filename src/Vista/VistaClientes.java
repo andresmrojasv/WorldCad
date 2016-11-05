@@ -15,6 +15,7 @@ public class VistaClientes extends javax.swing.JFrame {
      * Creates new form VistaCliente
      */
     public VistaClientes() {
+       getContentPane().setBackground(new java.awt.Color(255,255,255));
         initComponents();
     }
 
@@ -43,19 +44,20 @@ public class VistaClientes extends javax.swing.JFrame {
         jLCiudad = new javax.swing.JLabel();
         jTURL = new javax.swing.JTextField();
         jTTelefono = new javax.swing.JTextField();
-        jCCiudad = new javax.swing.JComboBox<>();
+        jCCiudad = new javax.swing.JComboBox<String>();
         jBRegistrar = new javax.swing.JButton();
         jBModificar = new javax.swing.JButton();
         jBEliminar = new javax.swing.JButton();
         jBConsultar = new javax.swing.JButton();
         jBSalir = new javax.swing.JButton();
-        jLDatosPrincipales = new javax.swing.JLabel();
-        jLDatosComplementarios = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cliente");
+        setBackground(new java.awt.Color(51, 255, 51));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jPDatosPrincipales.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jPDatosPrincipales.setBackground(new java.awt.Color(255, 255, 255));
+        jPDatosPrincipales.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true), "Datos Principales", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(51, 102, 255)));
 
         jLIdentificacion.setText("Identificación: ");
 
@@ -72,6 +74,11 @@ public class VistaClientes extends javax.swing.JFrame {
         jTCorreo.setEditable(false);
 
         jBNuevoCliente.setText("Nuevo Cliente");
+        jBNuevoCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBNuevoClienteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPDatosPrincipalesLayout = new javax.swing.GroupLayout(jPDatosPrincipales);
         jPDatosPrincipales.setLayout(jPDatosPrincipalesLayout);
@@ -111,14 +118,15 @@ public class VistaClientes extends javax.swing.JFrame {
                 .addGroup(jPDatosPrincipalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLDireccion)
                     .addComponent(jTDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(jPDatosPrincipalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLCorreo)
                     .addComponent(jTCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
-        jPDatosComplementarios.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jPDatosComplementarios.setBackground(new java.awt.Color(255, 255, 255));
+        jPDatosComplementarios.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true), "Datos Complementarios", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(51, 102, 255)));
 
         jLURL.setText("URL:");
 
@@ -130,7 +138,7 @@ public class VistaClientes extends javax.swing.JFrame {
 
         jTTelefono.setEditable(false);
 
-        jCCiudad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Barranquilla", "Bogotá", "Cali", "Cartagena", "Medellin" }));
+        jCCiudad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Barranquilla", "Bogotá", "Cali", "Cartagena", "Medellin" }));
         jCCiudad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCCiudadActionPerformed(evt);
@@ -186,10 +194,6 @@ public class VistaClientes extends javax.swing.JFrame {
 
         jBSalir.setText("Salir");
 
-        jLDatosPrincipales.setText("Datos Principales");
-
-        jLDatosComplementarios.setText("Datos Complementarios");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -200,19 +204,15 @@ public class VistaClientes extends javax.swing.JFrame {
                     .addComponent(jPDatosComplementarios, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPDatosPrincipales, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jBRegistrar)
-                                .addGap(18, 18, 18)
-                                .addComponent(jBModificar)
-                                .addGap(18, 18, 18)
-                                .addComponent(jBConsultar)
-                                .addGap(18, 18, 18)
-                                .addComponent(jBEliminar)
-                                .addGap(18, 18, 18)
-                                .addComponent(jBSalir))
-                            .addComponent(jLDatosPrincipales)
-                            .addComponent(jLDatosComplementarios))
+                        .addComponent(jBRegistrar)
+                        .addGap(18, 18, 18)
+                        .addComponent(jBModificar)
+                        .addGap(18, 18, 18)
+                        .addComponent(jBConsultar)
+                        .addGap(18, 18, 18)
+                        .addComponent(jBEliminar)
+                        .addGap(18, 18, 18)
+                        .addComponent(jBSalir)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -220,12 +220,8 @@ public class VistaClientes extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLDatosPrincipales)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPDatosPrincipales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 3, 3)
-                .addComponent(jLDatosComplementarios)
-                .addGap(1, 1, 1)
+                .addGap(18, 18, 18)
                 .addComponent(jPDatosComplementarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -243,6 +239,10 @@ public class VistaClientes extends javax.swing.JFrame {
     private void jCCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCCiudadActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCCiudadActionPerformed
+
+    private void jBNuevoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNuevoClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBNuevoClienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -290,8 +290,6 @@ public class VistaClientes extends javax.swing.JFrame {
     public javax.swing.JComboBox<String> jCCiudad;
     public javax.swing.JLabel jLCiudad;
     public javax.swing.JLabel jLCorreo;
-    public javax.swing.JLabel jLDatosComplementarios;
-    public javax.swing.JLabel jLDatosPrincipales;
     public javax.swing.JLabel jLDireccion;
     public javax.swing.JLabel jLIdentificacion;
     public javax.swing.JLabel jLNombre;
