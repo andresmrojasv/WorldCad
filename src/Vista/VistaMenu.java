@@ -41,7 +41,7 @@ public class VistaMenu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menú Worldcad");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Andrés\\Desktop\\Mega\\Mega\\Esto no es secreto\\Programación II\\WorldCad\\src\\Imagen\\worldcadface.jpg")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagen/worldcadface.jpg"))); // NOI18N
 
         jMenu3.setText("Datos");
 

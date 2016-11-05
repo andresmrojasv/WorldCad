@@ -26,22 +26,14 @@ public class ControladorVendedores implements ActionListener {
 
         this.vistavendedor.setVisible(true);
 
-        this.vistavendedor.jBRegistrarVendedor.addActionListener(this);
-        this.vistavendedor.jBConsultar.addActionListener(this);
-        this.vistavendedor.jBEliminar.addActionListener(this);
-        this.vistavendedor.jBSalirVendedor.addActionListener(this);
-        this.vistavendedor.jCSucursal.addActionListener(this);
+
 
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand() == " Registrar"){
-            vistavendedor.jBRegistrarVendedor.setEnabled(true);
-            vistavendedor.jBConsultar.setEnabled(false);
-            vistavendedor.jBEliminar.setEnabled(false);
-            vistavendedor.jBModificarVendedor.setEnabled(false);
-            vistavendedor.jBSalirVendedor.setEnabled(true);
+      
             
           vistavendedor.jTCorreoVendedor.setEditable(true);
           vistavendedor.jTIdentVendedor.setEditable(true);
