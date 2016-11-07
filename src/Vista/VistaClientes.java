@@ -30,14 +30,16 @@ public class VistaClientes extends javax.swing.JFrame {
 
         jPDatosPrincipales = new javax.swing.JPanel();
         jLIdentificacion = new javax.swing.JLabel();
-        jLNombre = new javax.swing.JLabel();
+        jLNombreEmpresa = new javax.swing.JLabel();
         jLCorreo = new javax.swing.JLabel();
         jLDireccion = new javax.swing.JLabel();
         jTIdentificacion = new javax.swing.JTextField();
-        jTNombre = new javax.swing.JTextField();
+        jTNombreEmpresa = new javax.swing.JTextField();
         jTDireccion = new javax.swing.JTextField();
         jTCorreo = new javax.swing.JTextField();
         jBNuevoCliente = new javax.swing.JButton();
+        jLNombreContacto = new javax.swing.JLabel();
+        jTNombreContacto = new javax.swing.JTextField();
         jPDatosComplementarios = new javax.swing.JPanel();
         jLURL = new javax.swing.JLabel();
         jLTelefono = new javax.swing.JLabel();
@@ -61,13 +63,13 @@ public class VistaClientes extends javax.swing.JFrame {
 
         jLIdentificacion.setText("Identificación: ");
 
-        jLNombre.setText("Nombre: ");
+        jLNombreEmpresa.setText("Nombre Empresa: ");
 
         jLCorreo.setText("Correo: ");
 
         jLDireccion.setText("Direccion: ");
 
-        jTNombre.setEditable(false);
+        jTNombreEmpresa.setEditable(false);
 
         jTDireccion.setEditable(false);
 
@@ -80,6 +82,10 @@ public class VistaClientes extends javax.swing.JFrame {
             }
         });
 
+        jLNombreContacto.setText("Nombre Contacto: ");
+
+        jTNombreContacto.setEditable(false);
+
         javax.swing.GroupLayout jPDatosPrincipalesLayout = new javax.swing.GroupLayout(jPDatosPrincipales);
         jPDatosPrincipales.setLayout(jPDatosPrincipalesLayout);
         jPDatosPrincipalesLayout.setHorizontalGroup(
@@ -87,17 +93,23 @@ public class VistaClientes extends javax.swing.JFrame {
             .addGroup(jPDatosPrincipalesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPDatosPrincipalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLIdentificacion)
-                    .addComponent(jLCorreo)
-                    .addComponent(jLDireccion)
-                    .addComponent(jLNombre))
-                .addGap(18, 18, 18)
+                    .addGroup(jPDatosPrincipalesLayout.createSequentialGroup()
+                        .addGroup(jPDatosPrincipalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLIdentificacion)
+                            .addComponent(jLCorreo)
+                            .addComponent(jLDireccion)
+                            .addComponent(jLNombreEmpresa))
+                        .addGap(21, 21, 21))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPDatosPrincipalesLayout.createSequentialGroup()
+                        .addComponent(jLNombreContacto)
+                        .addGap(18, 18, 18)))
                 .addGroup(jPDatosPrincipalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTNombreContacto)
                     .addGroup(jPDatosPrincipalesLayout.createSequentialGroup()
                         .addComponent(jTIdentificacion)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBNuevoCliente))
-                    .addComponent(jTNombre)
+                    .addComponent(jTNombreEmpresa)
                     .addComponent(jTDireccion)
                     .addComponent(jTCorreo))
                 .addContainerGap())
@@ -112,13 +124,17 @@ public class VistaClientes extends javax.swing.JFrame {
                     .addComponent(jBNuevoCliente))
                 .addGap(18, 18, 18)
                 .addGroup(jPDatosPrincipalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLNombre)
-                    .addComponent(jTNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLNombreEmpresa)
+                    .addComponent(jTNombreEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPDatosPrincipalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPDatosPrincipalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTNombreContacto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLNombreContacto))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addGroup(jPDatosPrincipalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLDireccion)
-                    .addComponent(jTDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                    .addComponent(jTDireccion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPDatosPrincipalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLCorreo)
                     .addComponent(jTCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -221,7 +237,7 @@ public class VistaClientes extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPDatosPrincipales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPDatosComplementarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -292,7 +308,8 @@ public class VistaClientes extends javax.swing.JFrame {
     public javax.swing.JLabel jLCorreo;
     public javax.swing.JLabel jLDireccion;
     public javax.swing.JLabel jLIdentificacion;
-    public javax.swing.JLabel jLNombre;
+    public javax.swing.JLabel jLNombreContacto;
+    public javax.swing.JLabel jLNombreEmpresa;
     public javax.swing.JLabel jLTelefono;
     public javax.swing.JLabel jLURL;
     private javax.swing.JPanel jPDatosComplementarios;
@@ -300,7 +317,8 @@ public class VistaClientes extends javax.swing.JFrame {
     public javax.swing.JTextField jTCorreo;
     public javax.swing.JTextField jTDireccion;
     public javax.swing.JTextField jTIdentificacion;
-    public javax.swing.JTextField jTNombre;
+    public javax.swing.JTextField jTNombreContacto;
+    public javax.swing.JTextField jTNombreEmpresa;
     public javax.swing.JTextField jTTelefono;
     public javax.swing.JTextField jTURL;
     // End of variables declaration//GEN-END:variables

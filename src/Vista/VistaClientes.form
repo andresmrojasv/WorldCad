@@ -57,7 +57,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPDatosPrincipales" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jPDatosComplementarios" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -98,19 +98,28 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLIdentificacion" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLCorreo" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLDireccion" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLNombre" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLIdentificacion" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLCorreo" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLDireccion" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLNombreEmpresa" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="jLNombreContacto" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jTNombreContacto" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jTIdentificacion" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jBNuevoCliente" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="jTNombre" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jTNombreEmpresa" alignment="0" max="32767" attributes="0"/>
                       <Component id="jTDireccion" max="32767" attributes="0"/>
                       <Component id="jTCorreo" alignment="0" max="32767" attributes="0"/>
                   </Group>
@@ -129,15 +138,20 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLNombre" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLNombreEmpresa" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTNombreEmpresa" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jTNombreContacto" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLNombreContacto" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="34" max="32767" attributes="0"/>
+                  <EmptySpace pref="13" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jLDireccion" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTDireccion" alignment="1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLCorreo" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jTCorreo" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -156,9 +170,9 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLNombre">
+        <Component class="javax.swing.JLabel" name="jLNombreEmpresa">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Nombre: "/>
+            <Property name="text" type="java.lang.String" value="Nombre Empresa: "/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -185,7 +199,7 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTNombre">
+        <Component class="javax.swing.JTextField" name="jTNombreEmpresa">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
@@ -216,6 +230,22 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBNuevoClienteActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLNombreContacto">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Nombre Contacto: "/>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JTextField" name="jTNombreContacto">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>

@@ -24,7 +24,7 @@ public class ControladorClientes implements ActionListener {
 
         if ("Nuevo Cliente".equals(e.getActionCommand())) {
 
-            vistaclientes.jTNombre.setEnabled(true);
+            vistaclientes.jTNombreEmpresa.setEnabled(true);
             vistaclientes.jTDireccion.setEnabled(true);
             vistaclientes.jTCorreo.setEditable(true);
 
