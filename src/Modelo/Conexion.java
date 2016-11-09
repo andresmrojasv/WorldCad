@@ -13,10 +13,10 @@ public class Conexion {
     private static final String server = "jdbc:sqlserver://localhost:1433;databaseName=WORLDCAD"; //Aquí colocaremos la ruta de nuestra base de datos;
     private static final String user = "sa"; //Aquí colocaremos el nombre de usuario mySql;
     private static final String pass = "Worldcad"; //Aquí colocaremos la clave de acceso de usuario a mySql;
-    private static final Driver driver = new com.microsoft.sqlserver.jdbc.SQLServerDriver(); //Aquí colocaremos muestra librería mySql;
+    private static final Driver driver = new com.microsoft.sqlserver.jdbc.SQLServerDriver();//Aquí colocaremos muestra librería mySql;
     private static Connection conexion; //Creamos un objeto de clase Connection para la conexión para la conexión;
 
-    /*//Conecion SQL Server
+    /*Conecion SQL Server
     private static String server = "jdbc:sqlserver://localhost:1433;databaseName=TarjetaCredito";; //Aquí colocaremos la ruta de nuestra base de datos;
     private static String user = "sa"; //Aquí colocaremos el nombre de usuario mySql;
     private static String pass = "Goofy2005*"; //Aquí colocaremos la clave de acceso de usuario a mySql;
