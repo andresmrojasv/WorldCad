@@ -5,6 +5,15 @@
  */
 package Vista;
 
+import Modelo.Conexion;
+import Modelo.Vendedores;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author daybe
@@ -15,8 +24,9 @@ public class VistaVendedores extends javax.swing.JFrame {
      * Creates new form VistaVendedor
      */
     public VistaVendedores() {
-        getContentPane().setBackground(new java.awt.Color(255,255,255));
+        getContentPane().setBackground(new java.awt.Color(255, 255, 255));
         initComponents();
+        combox();
     }
 
     /**
@@ -37,7 +47,7 @@ public class VistaVendedores extends javax.swing.JFrame {
         jLSucursalVendedor = new javax.swing.JLabel();
         jLCorreo = new javax.swing.JLabel();
         jTIdentVendedor = new javax.swing.JTextField();
-        jCSucursal = new javax.swing.JComboBox<String>();
+        jCSucursal = new javax.swing.JComboBox<>();
         jTNombreVendedor = new javax.swing.JTextField();
         jTCorreoVendedor = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -80,14 +90,13 @@ public class VistaVendedores extends javax.swing.JFrame {
 
         jTIdentVendedor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
+        jCSucursal.setEditable(true);
         jCSucursal.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jCSucursal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Barranquilla ", "Bogota", "Cali", "Cartagena ", "Medellin" }));
+        jCSucursal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Barranquilla ", "Bogota", "Cali", "Cartagena ", "Medellin" }));
         jCSucursal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jTNombreVendedor.setEditable(false);
         jTNombreVendedor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
-        jTCorreoVendedor.setEditable(false);
         jTCorreoVendedor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -173,7 +182,7 @@ public class VistaVendedores extends javax.swing.JFrame {
                 .addComponent(jBModificarVendedor)
                 .addGap(18, 18, 18)
                 .addComponent(jBSalirVendedor)
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addContainerGap(68, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -195,6 +204,31 @@ public class VistaVendedores extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    public void combox() {
+        Conexion.Connection();
+        Connection conec = Conexion.getCnnection();
+        Statement st;
+        ResultSet rs;
+
+        String sql = " SELECT CIUDAD FROM CIUDADES";
+
+        try {
+            st = conec.createStatement();
+            rs = st.executeQuery(sql);
+            jCSucursal.removeAllItems();
+            while (rs.next()){
+                jCSucursal.addItem(rs.getString(1));
+            }
+            conec.close();
+            st.close();
+            rs.close();
+        } catch (SQLException v) {
+            v.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al consultar laciudad");
+        }
+
+    }
 
     private void jBConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBConsultarActionPerformed
         // TODO add your handling code here:
@@ -237,19 +271,19 @@ public class VistaVendedores extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBConsultar;
-    private javax.swing.JButton jBEliminar;
-    private javax.swing.JButton jBModificarVendedor;
+    public javax.swing.JButton jBConsultar;
+    public javax.swing.JButton jBEliminar;
+    public javax.swing.JButton jBModificarVendedor;
     public javax.swing.JButton jBNuevoVendedor;
-    private javax.swing.JButton jBRegistrarVendedor;
-    private javax.swing.JButton jBSalirVendedor;
+    public javax.swing.JButton jBRegistrarVendedor;
+    public javax.swing.JButton jBSalirVendedor;
     public javax.swing.JComboBox<String> jCSucursal;
     public javax.swing.JLabel jLCorreo;
     public javax.swing.JLabel jLIdentVendedor;
     public javax.swing.JLabel jLNombVendedor;
     public javax.swing.JLabel jLSucursalVendedor;
     public javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel2;
+    public javax.swing.JPanel jPanel2;
     public javax.swing.JTextField jTCorreoVendedor;
     public javax.swing.JTextField jTIdentVendedor;
     public javax.swing.JTextField jTNombreVendedor;
