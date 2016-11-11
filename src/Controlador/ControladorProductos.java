@@ -10,6 +10,7 @@ import Modelo.ProductosDAO;
 import Vista.VistaProductos;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 
 public class ControladorProductos implements ActionListener{
@@ -33,7 +34,52 @@ public class ControladorProductos implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        vistaProducto.jButRegistrar.setEnabled(false);
+        if(e.getActionCommand() == "Nuevo Producto"){
+            vistaProducto.jButRegistrar.setEnabled(true);
+            vistaProducto.jButConsultar.setEnabled(false);
+            vistaProducto.jButModificar.setEnabled(false);
+            vistaProducto.jButSalir.setEnabled(true);
+            vistaProducto.jButnProducto.setEnabled(false);
+            
+            vistaProducto.jTnomParte.setEditable(true);
+            vistaProducto.jTnomParte.setEditable(true);
+            vistaProducto.jTnomProducto.setEditable(true);
+            vistaProducto.jTprecioVenta.setEditable(true);
+            
+        }
+        
+        if(e.getActionCommand() == "Registrar"){
+            
+            String nomParte = vistaProducto.jTnomParte.getText();
+            String nomProducto = vistaProducto.jTnomProducto.getText();
+            int cantidad =  Integer.parseInt(vistaProducto.jTcantidad.getText());
+            float precioVenta = Float.parseFloat(vistaProducto.jTprecioVenta.getText());
+            
+            modelo.registrarProducto(new Productos(nomParte,nomProducto,cantidad,precioVenta));
+            
+            vistaProducto.jButRegistrar.setEnabled(true);
+            vistaProducto.jButConsultar.setEnabled(true);
+            vistaProducto.jButModificar.setEnabled(false);
+            vistaProducto.jButSalir.setEnabled(true);
+            vistaProducto.jButnProducto.setEnabled(true);
+            
+            vistaProducto.jTnomParte.setEditable(true);
+            vistaProducto.jTnomParte.setEditable(true);
+            vistaProducto.jTnomProducto.setEditable(true);
+            vistaProducto.jTprecioVenta.setEditable(true);
+            
+            vistaProducto.jTcantidad.setText("");
+            vistaProducto.jTnomParte.setText("");
+            vistaProducto.jTnomProducto.setText("");
+            vistaProducto.jTprecioVenta.setText("");
+            
+        }
+        
+        if(e.getActionCommand() == "Consultar"){
+            ArrayList<Productos> contacto = modelo.consultarContacto(vistaC.jTcontaco1.getText());
+        
+        }
+        
     }
     
     
