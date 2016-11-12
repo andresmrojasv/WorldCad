@@ -14,7 +14,8 @@ import java.io.Serializable;
 public class Clientes implements Serializable {
 
     private int identificacion;
-    private String nombre;
+    private String nombre_empresa;
+    private String nombre_contacto;
     private String direccion;
     private String correo;
     private String URL;
@@ -23,9 +24,10 @@ public class Clientes implements Serializable {
     
     public Clientes(){}
 
-    public Clientes(int identificacion, String nombre, String direccion, String correo, String URL, int telefono, String ciudad) {
+    public Clientes(int identificacion, String nombre_empresa, String nombre_contacto, String direccion, String correo, String URL, int telefono, String ciudad) {
         this.identificacion = identificacion;
-        this.nombre = nombre;
+        this.nombre_empresa = nombre_empresa;
+        this.nombre_contacto = nombre_contacto;
         this.direccion = direccion;
         this.correo = correo;
         this.URL = URL;
@@ -41,12 +43,20 @@ public class Clientes implements Serializable {
         this.identificacion = identificacion;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombre_empresa() {
+        return nombre_empresa;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombre_empresa(String nombre_empresa) {
+        this.nombre_empresa = nombre_empresa;
+    }
+
+    public String getNombre_contacto() {
+        return nombre_contacto;
+    }
+
+    public void setNombre_contacto(String nombre_contacto) {
+        this.nombre_contacto = nombre_contacto;
     }
 
     public String getDireccion() {
@@ -88,5 +98,4 @@ public class Clientes implements Serializable {
     public void setCiudad(String ciudad) {
         this.ciudad = ciudad;
     }
-
 }
