@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -8,6 +8,7 @@ package Controlador;
 import Modelo.Productos;
 import Modelo.ProductosDAO;
 import Vista.VistaProductos;
+import Vista.VistaMenu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ public class ControladorProductos implements ActionListener{
     private ProductosDAO modelo = new ProductosDAO();
     private VistaProductos vistaProducto;
     private ProductosDAO productosDao;
+    private VistaMenu vistaMenu;
 
     public ControladorProductos(VistaProductos vistaProducto, ProductosDAO productosDao) {
         this.vistaProducto = vistaProducto;
@@ -53,8 +55,8 @@ public class ControladorProductos implements ActionListener{
             
             String nomParte = vistaProducto.jTnomParte.getText();
             String nomProducto = vistaProducto.jTnomProducto.getText();
-            int cantidad =  Integer.parseInt(vistaProducto.jTcantidad.getText());
-            float precioVenta = Float.parseFloat(vistaProducto.jTprecioVenta.getText());
+            String cantidad =  vistaProducto.jTcantidad.getText();
+            String precioVenta = vistaProducto.jTprecioVenta.getText();
             
             modelo.registrarProducto(new Productos(nomParte,nomProducto,cantidad,precioVenta));
             
@@ -81,23 +83,63 @@ public class ControladorProductos implements ActionListener{
             
             if(!producto.isEmpty()){
               
-                vistaProducto.jTcantidad.setText((Integer.parseInt(producto.get(0).getCantidad())));
-                
-                /*vistaC.jTtelMovil1.setText(contacto.get(0).getTelefonoMovil());
-                vistaC.jTtelFijo1.setText(contacto.get(0).getTelefonoFio());
-                vistaC.jTdCorreo.setText(contacto.get(0).getDireccioCorreo());
-                vistaC.jTsitioWeb.setText(contacto.get(0).getSitioWeb());
-                vistaC.jTtelMovil1.setEditable(true);
-                vistaC.jTtelFijo1.setEditable(true);
-                vistaC.jTdCorreo.setEditable(true);
-                vistaC.jTsitioWeb.setEditable(true);
-                vistaC.jBborarContacto.setEnabled(true);
-                vistaC.jBmodificar.setEnabled(true);*/
+                vistaProducto.jTcantidad.setText(producto.get(0).getCantidad());
+                vistaProducto.jTnomParte.setText(producto.get(0).getNombreParte());
+                vistaProducto.jTnomProducto.setText(producto.get(0).getNombreProducto());
+                vistaProducto.jTprecioVenta.setText(producto.get(0).getPrecioVenta());
+                vistaProducto.jTcantidad.setEditable(false);
+                vistaProducto.jTnomParte.setEditable(false);
+                vistaProducto.jTnomProducto.setEditable(false);
+                vistaProducto.jTprecioVenta.setEnabled(false);
+         
            }else{
                JOptionPane.showMessageDialog(null, "El Contacto no Existe\n");
            }
         
         }
+        
+        if(e.getActionCommand() == "Modificar" ){
+           String nomParte = vistaProducto.jTnomParte.getText();
+           String nomProducto = vistaProducto.jTnomProducto.getText();
+           String cantidad = vistaProducto.jTcantidad.getText();
+           String precioVenta = vistaProducto.jTprecioVenta.getText();
+           
+           modelo.modificarProducto(new Productos(nomParte,nomProducto,cantidad,precioVenta));
+                     
+           vistaProducto.jButConsultar.setEnabled(true);
+           vistaProducto.jButnProducto.setEnabled(true);
+           
+           vistaProducto.jTcantidad.setEditable(false);
+           vistaProducto.jTnomParte.setEditable(false);
+           vistaProducto.jTnomProducto.setEditable(false);
+           vistaProducto.jTprecioVenta.setEnabled(false);
+           
+           vistaProducto.jTcantidad.setText("");
+           vistaProducto.jTnomParte.setText("");
+           vistaProducto.jTnomProducto.setText("");
+           vistaProducto.jTprecioVenta.setText("");
+             
+       }
+        
+        if(e.getActionCommand() == "Eliminar"){
+           modelo.eliminarProducto(vistaProducto.jTnomParte.getText());
+           
+           vistaProducto.jTcantidad.setEditable(false);
+           vistaProducto.jTnomProducto.setEditable(false);
+           vistaProducto.jTprecioVenta.setEditable(false);
+           
+           vistaProducto.jTcantidad.setText("");
+           vistaProducto.jTnomParte.setText("");
+           vistaProducto.jTnomProducto.setText("");
+           vistaProducto.jTprecioVenta.setText("");
+           
+       }
+        
+        if(e.getSource() == vistaProducto.jButSalir){
+           this.vistaProducto.dispose();
+           this.vistaMenu.setVisible(true);
+       
+       }
         
     }
     

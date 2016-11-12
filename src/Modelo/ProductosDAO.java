@@ -17,13 +17,15 @@ import javax.swing.JOptionPane;
  * @author ESTACION
  */
 public class ProductosDAO {
+    
+    
     public void registrarProducto(Productos c) {
         //Conexion y carga BD
         Conexion.Connection(); 
         Connection conn = Conexion.getCnnection(); //Para establecer conexiones con las bases de datos
         Statement st; //Para ejecutar sentecias SQL y enviarlas a las BBDD
          //Creamos la sentencia SQL
-        String sql ="insert into contacto(nombre,movil,fijo,correo,web) values ('"+c.getNombreParte()+"','"+c.getNombreProducto()+"','"+c.getCantidad()+"','"+c.getPrecioVenta()+"')";
+        String sql ="insert into contacto(numero_parte,nombre,cantidad,precio_venta) values ('"+c.getNombreParte()+"','"+c.getNombreProducto()+"','"+c.getCantidad()+"','"+c.getPrecioVenta()+"')";
          //Ejecuta la sentencia SQL
         try{
             st = conn.createStatement();
@@ -38,8 +40,8 @@ public class ProductosDAO {
         }
     }
     
-    public ArrayList<Productos> consultarProducto(String nombre){
-        ArrayList miContacto =new ArrayList();
+    public ArrayList<Productos> consultarProducto(String nomParte){
+        ArrayList bProducto =new ArrayList();
         //Conexion y carga BD
         Conexion.Connection();
         Connection conn = Conexion.getCnnection();//Para establecer conexiones con las bases de datos
@@ -47,19 +49,19 @@ public class ProductosDAO {
         ResultSet rs; //Para almacenar el resultado de la consulta
         
         //Creamos la sentencia SQL
-        String sql = "select * from contacto where nombre = '"+nombre+"' ";
+        String sql = "select * from productos where nombre_parte = '"+nomParte+"' ";
         try{
             st = conn.createStatement();
             rs = st.executeQuery(sql);
             //Extraer los datos d ela consulta
             if(rs.next()){
-              ContactoVO contacto =new ContactoVO(); 
-              contacto.setContacto(rs.getString("nombre"));
-              contacto.setTelefonoMovil(rs.getString("movil"));
-              contacto.setTelefonoFio(rs.getString("fijo"));
-              contacto.setDireccioCorreo(rs.getString("correo"));
-              contacto.setSitioWeb(rs.getString("web"));
-              miContacto.add(contacto);
+              Productos producto =new Productos(); 
+              producto.setNombreParte(rs.getString("nombre_Parte"));
+              producto.setNombreProducto(rs.getString("nombre"));
+              producto.setCantidad(rs.getString("cantidad"));
+              producto.setPrecioVenta(rs.getString("precio_venta"));
+              bProducto.add(producto);
+              
             }
            //Cerramos conexiones
             conn.close();
@@ -69,6 +71,60 @@ public class ProductosDAO {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "no se pudo consultar el Contacto\n"+e);
         }
-        return miContacto; 
+        return bProducto; 
+    }
+    
+    public void modificarProducto(Productos c){
+        Conexion.Connection();
+        Connection conn = Conexion.getCnnection();//Para establecer conexiones con las bases de datos
+        Statement st; //Para ejecutar sentecias SQL y enviarlas a las BD
+        
+        //Creamos la sentencia SQL
+        String sql = "update contacto set movil='"+c.getNombreParte()+"',fijo='"+c.getNombreProducto()+"',correo='"+c.getCantidad()+"',web='"+c.getPrecioVenta()+"'";
+        
+        //Ejecuta la sentencia SQL
+        try{
+            st = conn.createStatement();
+            int confirmar = st.executeUpdate(sql);
+            if(confirmar==1){
+                JOptionPane.showMessageDialog(null,"Se ha modificado el contacto Exitosamente");
+            }else{
+                JOptionPane.showMessageDialog(null,"Error al modificar el contacto");
+            }
+            
+            //Cerramos conexiones
+            conn.close();
+            st.close();
+        }catch(SQLException exe){
+            exe.printStackTrace();
+        }
+    
+    
+    }
+    
+    public void eliminarProducto(String nombre){
+    //Conexion y carga BD
+        Conexion.Connection();
+        Connection conn = Conexion.getCnnection();//Para establecer conexiones con las bases de datos
+        Statement st;//Para ejecutar sentecias SQL y enviarlas a las BBDD
+        //Creamos la sentencia SQL
+        String sql = "delete from contacto where nombre= '"+nombre+"'";
+        
+        //Ejecuta la sentencia SQL
+        try{
+            st = conn.createStatement();
+            int confirmar = st.executeUpdate(sql);
+            if(confirmar==1){
+                JOptionPane.showMessageDialog(null,"Se ha eliminado el contacto Exitosamente");
+            }else{
+                JOptionPane.showMessageDialog(null,"Error al eliminar el contacto");
+            }
+            
+            //Cerramos conexiones
+            conn.close();
+            st.close();
+        }catch(SQLException exe){
+            exe.printStackTrace();
+        }
     }
 }

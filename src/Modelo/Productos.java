@@ -12,10 +12,10 @@ package Modelo;
 public class Productos {
     private String nombreParte; 
     private String nombreProducto;
-    private int cantidad; 
-    private float precioVenta;
+    private String cantidad; 
+    private String precioVenta;
 
-    public Productos(String nombreParte, String nombreProducto, int cantidad, float precioVenta) {
+    public Productos(String nombreParte, String nombreProducto, String cantidad, String precioVenta) {
         this.nombreParte = nombreParte;
         this.nombreProducto = nombreProducto;
         this.cantidad = cantidad;
@@ -38,21 +38,23 @@ public class Productos {
         this.nombreProducto = nombreProducto;
     }
 
-    public int getCantidad() {
+    public String getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(int cantidad) {
+    public void setCantidad(String cantidad) {
         this.cantidad = cantidad;
     }
 
-    public float getPrecioVenta() {
+    public String getPrecioVenta() {
         return precioVenta;
     }
 
-    public void setPrecioVenta(float precioVenta) {
+    public void setPrecioVenta(String precioVenta) {
         this.precioVenta = precioVenta;
     }
+
+   
     
     
 }
