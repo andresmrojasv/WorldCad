@@ -5,6 +5,13 @@
  */
 package Vista;
 
+import Modelo.Conexion;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import Modelo.Cotizaciones;
 /**
  *
  * @author Pablo_Garcia
@@ -14,9 +21,13 @@ public class VistaCotizaciones extends javax.swing.JFrame {
     /**
      * Creates new form VistaCotizacion
      */
+    private Cotizaciones cotizacion;
+    
     public VistaCotizaciones() {
          getContentPane().setBackground(new java.awt.Color(255,255,255));
         initComponents();
+        listaclientes();
+        listavendedores();
     }
 
     /**
@@ -30,20 +41,21 @@ public class VistaCotizaciones extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLCliente = new javax.swing.JLabel();
-        jTCliente = new javax.swing.JTextField();
         jLDescripción = new javax.swing.JLabel();
-        jTDescripción = new javax.swing.JTextField();
         jLVendedor = new javax.swing.JLabel();
-        jTVendedor = new javax.swing.JTextField();
         jLFFestimadaCierre = new javax.swing.JLabel();
         jFFestimadaCierre = new javax.swing.JFormattedTextField();
         jLPorcentajeCierre = new javax.swing.JLabel();
         jTPorcentajeCierre = new javax.swing.JTextField();
         jLNumeroCotizacion = new javax.swing.JLabel();
         jTNumeroCotizacion = new javax.swing.JTextField();
+        jCCliente = new javax.swing.JComboBox<>();
+        jCVendedor = new javax.swing.JComboBox<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTDescripcion = new javax.swing.JTextArea();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableDetalleProductos = new javax.swing.JTable();
         jLSubTotal = new javax.swing.JLabel();
         jLiva = new javax.swing.JLabel();
         jLTotal = new javax.swing.JLabel();
@@ -54,6 +66,19 @@ public class VistaCotizaciones extends javax.swing.JFrame {
         jBModificar = new javax.swing.JButton();
         jBConsultar = new javax.swing.JButton();
         jBSalir = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jLBuscarProducto = new javax.swing.JLabel();
+        jTBuscarProducto = new javax.swing.JTextField();
+        jBbuscarProducto = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jTnumParte = new javax.swing.JTextField();
+        jTproducto = new javax.swing.JTextField();
+        jTcantidad = new javax.swing.JTextField();
+        jBagregarproducto = new javax.swing.JButton();
+        jTprecioVenta = new javax.swing.JTextField();
+        jLprecioVenta = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cotización");
@@ -68,15 +93,21 @@ public class VistaCotizaciones extends javax.swing.JFrame {
 
         jLVendedor.setText("Vendedor:");
 
-        jLFFestimadaCierre.setText("Fecha estimada de cierre");
+        jLFFestimadaCierre.setText("Fecha estimada de cierre:");
 
         jFFestimadaCierre.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
         jFFestimadaCierre.setText("dd/mm/aaaa");
         jFFestimadaCierre.setToolTipText("dd/mm/aaaa");
 
-        jLPorcentajeCierre.setText("Porcentaje de cierre");
+        jLPorcentajeCierre.setText("Porcentaje de cierre:");
 
-        jLNumeroCotizacion.setText("Número de cotización");
+        jLNumeroCotizacion.setText("Número de cotización:");
+
+        jTNumeroCotizacion.setEditable(false);
+
+        jTDescripcion.setColumns(10);
+        jTDescripcion.setRows(5);
+        jScrollPane2.setViewportView(jTDescripcion);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -84,31 +115,38 @@ public class VistaCotizaciones extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLDescripción)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLCliente)
-                            .addComponent(jLDescripción))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
-                            .addComponent(jTDescripción)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLVendedor)
+                            .addComponent(jLVendedor)
+                            .addComponent(jLCliente))
                         .addGap(18, 18, 18)
-                        .addComponent(jTVendedor)))
-                .addGap(104, 104, 104)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jCCliente, 0, 248, Short.MAX_VALUE)
+                            .addComponent(jCVendedor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLNumeroCotizacion)
                     .addComponent(jLFFestimadaCierre)
-                    .addComponent(jLPorcentajeCierre)
-                    .addComponent(jLNumeroCotizacion))
-                .addGap(18, 18, 18)
+                    .addComponent(jLPorcentajeCierre))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jFFestimadaCierre, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jTNumeroCotizacion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
-                        .addComponent(jTPorcentajeCierre, javax.swing.GroupLayout.Alignment.LEADING)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jFFestimadaCierre, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(31, 31, 31))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jTPorcentajeCierre)
+                                .addGap(52, 52, 52))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTNumeroCotizacion, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,28 +154,34 @@ public class VistaCotizaciones extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLCliente)
-                    .addComponent(jTCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLFFestimadaCierre)
-                    .addComponent(jFFestimadaCierre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLDescripción)
-                    .addComponent(jTDescripción, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLPorcentajeCierre)
-                    .addComponent(jTPorcentajeCierre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLVendedor)
-                    .addComponent(jTVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLNumeroCotizacion)
                     .addComponent(jTNumeroCotizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTPorcentajeCierre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLVendedor)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jCVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLPorcentajeCierre)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLFFestimadaCierre)
+                            .addComponent(jFFestimadaCierre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLDescripción))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true), "Detalle", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(51, 102, 255))); // NOI18N
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableDetalleProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"1", "Disco Duro 1TB", "$186.000", "$186.000"},
                 {null, null, null, null},
@@ -148,7 +192,7 @@ public class VistaCotizaciones extends javax.swing.JFrame {
                 "Cantidad", "Productos", "Precio Unitario", "Precio Total"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableDetalleProductos);
 
         jLSubTotal.setText("Subtotal:");
 
@@ -196,7 +240,7 @@ public class VistaCotizaciones extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLTotal)
                     .addComponent(jTTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         jBCrearCotizacion.setText("Crear");
@@ -207,34 +251,123 @@ public class VistaCotizaciones extends javax.swing.JFrame {
 
         jBSalir.setText("Salir");
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true), "Selección producto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(51, 102, 255))); // NOI18N
+
+        jLBuscarProducto.setText("Número de parte:");
+
+        jBbuscarProducto.setText("Buscar Producto");
+
+        jLabel1.setText("Número de Parte");
+
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Producto");
+
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Cantidad");
+
+        jTcantidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTcantidadActionPerformed(evt);
+            }
+        });
+
+        jBagregarproducto.setText("Agregar");
+
+        jLprecioVenta.setText("Precio Venta");
+        jLprecioVenta.setToolTipText("");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTnumParte, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
+                            .addComponent(jTproducto))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLprecioVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTprecioVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTcantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jBagregarproducto)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLBuscarProducto)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTBuscarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jBbuscarProducto)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLBuscarProducto)
+                    .addComponent(jTBuscarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBbuscarProducto))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(jLprecioVenta))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTnumParte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTproducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTcantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBagregarproducto)
+                    .addComponent(jTprecioVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(86, 86, 86)
-                .addComponent(jBCrearCotizacion)
-                .addGap(40, 40, 40)
-                .addComponent(jBModificar)
-                .addGap(36, 36, 36)
-                .addComponent(jBConsultar)
-                .addGap(41, 41, 41)
-                .addComponent(jBSalir)
-                .addContainerGap(162, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(145, 145, 145)
+                        .addComponent(jBCrearCotizacion)
+                        .addGap(43, 43, 43)
+                        .addComponent(jBModificar)
+                        .addGap(55, 55, 55)
+                        .addComponent(jBConsultar)
+                        .addGap(30, 30, 30)
+                        .addComponent(jBSalir)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(16, 16, 16)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBCrearCotizacion)
@@ -247,9 +380,70 @@ public class VistaCotizaciones extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTcantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTcantidadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTcantidadActionPerformed
+
     /**
      * @param args the command line arguments
      */
+    
+    public void listaclientes(){
+     //Conexion y carga BD
+        Conexion.Connection();
+        Connection conn = Conexion.getCnnection();//Para establecer conexiones con las bases de datos
+        Statement st;//Para ejecutar sentecias SQL y enviarlas a las BBDD
+        ResultSet rs; //Para almacenar el resultado de la consulta
+        
+        //Creamos la sentencia SQL
+        String sql = "select NOMBRE_EMPRESA from CLIENTES ";
+        try{
+            st = conn.createStatement();
+            rs = st.executeQuery(sql);
+            jCCliente.removeAllItems();
+            //Extraer los datos d ela consulta
+            while(rs.next()){
+             jCCliente.addItem(rs.getString(1));
+            }
+           //Cerramos conexiones
+            conn.close();
+            st.close();
+            rs.close();
+        }catch(SQLException e){
+            e.printStackTrace();
+          
+        }
+    
+    }
+    
+    public void listavendedores(){
+     //Conexion y carga BD
+        Conexion.Connection();
+        Connection conn = Conexion.getCnnection();//Para establecer conexiones con las bases de datos
+        Statement st;//Para ejecutar sentecias SQL y enviarlas a las BBDD
+        ResultSet rs; //Para almacenar el resultado de la consulta
+        
+        //Creamos la sentencia SQL
+        String sql = "select NOMBRE from VENDEDORES ";
+        try{
+            st = conn.createStatement();
+            rs = st.executeQuery(sql);
+            jCVendedor.removeAllItems();
+            //Extraer los datos d ela consulta
+            while(rs.next()){
+             jCVendedor.addItem(rs.getString(1));
+            }
+           //Cerramos conexiones
+            conn.close();
+            st.close();
+            rs.close();
+        }catch(SQLException e){
+            e.printStackTrace();
+          
+        }
+    
+    }
+        
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -288,7 +482,12 @@ public class VistaCotizaciones extends javax.swing.JFrame {
     public javax.swing.JButton jBCrearCotizacion;
     public javax.swing.JButton jBModificar;
     public javax.swing.JButton jBSalir;
+    public javax.swing.JButton jBagregarproducto;
+    public javax.swing.JButton jBbuscarProducto;
+    public javax.swing.JComboBox<String> jCCliente;
+    public javax.swing.JComboBox<String> jCVendedor;
     public javax.swing.JFormattedTextField jFFestimadaCierre;
+    public javax.swing.JLabel jLBuscarProducto;
     public javax.swing.JLabel jLCliente;
     public javax.swing.JLabel jLDescripción;
     public javax.swing.JLabel jLFFestimadaCierre;
@@ -297,18 +496,27 @@ public class VistaCotizaciones extends javax.swing.JFrame {
     public javax.swing.JLabel jLSubTotal;
     public javax.swing.JLabel jLTotal;
     public javax.swing.JLabel jLVendedor;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     public javax.swing.JLabel jLiva;
+    public javax.swing.JLabel jLprecioVenta;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JTextField jTCliente;
-    public javax.swing.JTextField jTDescripción;
+    private javax.swing.JScrollPane jScrollPane2;
+    public javax.swing.JTextField jTBuscarProducto;
+    public javax.swing.JTextArea jTDescripcion;
     public javax.swing.JTextField jTNumeroCotizacion;
     private javax.swing.JTextField jTPorcentajeCierre;
     public javax.swing.JTextField jTSubTotal;
     public javax.swing.JTextField jTTotal;
-    public javax.swing.JTextField jTVendedor;
-    private javax.swing.JTable jTable1;
+    public javax.swing.JTable jTableDetalleProductos;
+    public javax.swing.JTextField jTcantidad;
     public javax.swing.JTextField jTiva;
+    public javax.swing.JTextField jTnumParte;
+    public javax.swing.JTextField jTprecioVenta;
+    public javax.swing.JTextField jTproducto;
     // End of variables declaration//GEN-END:variables
 }
