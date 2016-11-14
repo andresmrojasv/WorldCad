@@ -38,7 +38,6 @@ public class ControladorCotizaciones implements ActionListener {
     private double subtotal = 0, iva = 0, total = 0;
     DecimalFormat decimales = new DecimalFormat("###.##");
 
-
     public ControladorCotizaciones(ProductosDAO productosD, VistaCotizaciones vistaC, VistaMenu vistaM) {
         this.productosD = productosD;
         this.vistaC = vistaC;
@@ -52,12 +51,25 @@ public class ControladorCotizaciones implements ActionListener {
         this.vistaC.jBnuevaCotiza.addActionListener(this);
         this.vistaC.jBEliminar.addActionListener(this);
         this.vistaC.jBSalir.addActionListener(this);
+        this.vistaC.jBnuevaCotiza.addActionListener(this);
         TablaProdcutos = (DefaultTableModel) this.vistaC.jTableDetalleProductos.getModel();
 
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
+        if ("Nueva".equals(e.getActionCommand())) {
+
+            this.vistaC.jTNumeroCotizacion.setEditable(false);
+            this.vistaC.jTDescripcion.setEditable(true);
+            this.vistaC.jTPorcentajeCierre.setEditable(true);
+            this.vistaC.jFFestimadaCierre.setEditable(true);
+            this.vistaC.jTBuscarProducto.setEditable(true);
+            this.vistaC.jTcantidad.setEditable(true);
+            this.vistaC.jTproductoEliminar.setEditable(true);
+
+        }
 
         if (e.getActionCommand() == "Buscar Producto") {
             ArrayList<Productos> producto = productosD.consultarProducto(vistaC.jTBuscarProducto.getText());
@@ -128,7 +140,7 @@ public class ControladorCotizaciones implements ActionListener {
             double porcentajeCierre = Double.parseDouble(this.vistaC.jTPorcentajeCierre.getText());
 
             double subtotal = Double.parseDouble(this.vistaC.jTSubTotal.getText());
-            double iva =Double.parseDouble(this.vistaC.jTiva.getText());
+            double iva = Double.parseDouble(this.vistaC.jTiva.getText());
             double total = Double.parseDouble(this.vistaC.jTTotal.getText());
 
             this.modeloCotiza.modificarCotizacion(new Cotizaciones(cliente, vendedor, descripcion, fechaECierre, porcentajeCierre), detalleCotiza, subtotal, iva, total);
@@ -149,7 +161,7 @@ public class ControladorCotizaciones implements ActionListener {
                 this.vistaC.jFFestimadaCierre.setText(DatosCotizacion.get(0).getFechaEstCierre());
 
                 for (int i = 0; i < TablaProdcutos.getRowCount(); i++) {
-                    
+
                     TablaProdcutos.removeRow(i);
 
                 }
@@ -169,21 +181,20 @@ public class ControladorCotizaciones implements ActionListener {
             }
         }
         if (e.getActionCommand() == "Nueva") {
-            
 
         }
         if (e.getActionCommand() == "Eliminar") {
-            String eProduct= this.vistaC.jTproductoEliminar.getText();
-            for(int i=0;i<= detalleCotiza.size();i++){
-                String numparte= detalleCotiza.get(i).getNumParte();
-                System.out.println(""+numparte);
-                if (detalleCotiza.get(i).getNumParte().equals(eProduct)){
+            String eProduct = this.vistaC.jTproductoEliminar.getText();
+            for (int i = 0; i <= detalleCotiza.size(); i++) {
+                String numparte = detalleCotiza.get(i).getNumParte();
+                System.out.println("" + numparte);
+                if (detalleCotiza.get(i).getNumParte().equals(eProduct)) {
                     detalleCotiza.remove(i);
-                    
+
                 }
             }
-             for (int i = 0; i <= TablaProdcutos.getRowCount(); i++) {
-                 System.out.println(""+TablaProdcutos.getRowCount());
+            for (int i = 0; i <= TablaProdcutos.getRowCount(); i++) {
+                System.out.println("" + TablaProdcutos.getRowCount());
                 TablaProdcutos.removeRow(i);
 
             }
@@ -197,7 +208,7 @@ public class ControladorCotizaciones implements ActionListener {
             for (DetalleCotizacion detalle : detalleCotiza) {
 
                 subtotal = subtotal + detalle.getPrecioTotal();
-               
+
             }
             this.vistaC.jTSubTotal.setText(String.valueOf(decimales.format(subtotal)));
             this.vistaC.jTiva.setText(String.valueOf(decimales.format(iva = subtotal * 0.16)));

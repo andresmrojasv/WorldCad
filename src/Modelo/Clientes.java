@@ -19,12 +19,13 @@ public class Clientes implements Serializable {
     private String direccion;
     private String correo;
     private String URL;
-    private int telefono;
+    private long telefono;
     private String ciudad;
-    
-    public Clientes(){}
 
-    public Clientes(int identificacion, String nombre_empresa, String nombre_contacto, String direccion, String correo, String URL, int telefono, String ciudad) {
+    public Clientes() {
+    }
+
+    public Clientes(int identificacion, String nombre_empresa, String nombre_contacto, String direccion, String correo, String URL, long telefono, String ciudad) {
         this.identificacion = identificacion;
         this.nombre_empresa = nombre_empresa;
         this.nombre_contacto = nombre_contacto;
@@ -83,11 +84,11 @@ public class Clientes implements Serializable {
         this.URL = URL;
     }
 
-    public int getTelefono() {
+    public long getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(long telefono) {
         this.telefono = telefono;
     }
 
@@ -98,4 +99,5 @@ public class Clientes implements Serializable {
     public void setCiudad(String ciudad) {
         this.ciudad = ciudad;
     }
+
 }

@@ -15,6 +15,9 @@ public class Productos {
     private String cantidad; 
     private String precioVenta;
 
+    public Productos() {
+    }
+
    
     
     public Productos(String nombreParte, String nombreProducto, String cantidad, String precioVenta) {

@@ -46,20 +46,20 @@ public class VistaClientes extends javax.swing.JFrame {
         jLCiudad = new javax.swing.JLabel();
         jTURL = new javax.swing.JTextField();
         jTTelefono = new javax.swing.JTextField();
-        jCCiudad = new javax.swing.JComboBox<>();
+        jCCiudad = new javax.swing.JComboBox<String>();
         jBRegistrar = new javax.swing.JButton();
         jBModificar = new javax.swing.JButton();
         jBEliminar = new javax.swing.JButton();
         jBConsultar = new javax.swing.JButton();
         jBSalir = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Cliente");
         setBackground(new java.awt.Color(51, 255, 51));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jPDatosPrincipales.setBackground(new java.awt.Color(255, 255, 255));
-        jPDatosPrincipales.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true), "Datos Principales", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(51, 102, 255))); // NOI18N
+        jPDatosPrincipales.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true), "Datos Principales", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(51, 102, 255)));
 
         jLIdentificacion.setText("Identificación: ");
 
@@ -142,7 +142,7 @@ public class VistaClientes extends javax.swing.JFrame {
         );
 
         jPDatosComplementarios.setBackground(new java.awt.Color(255, 255, 255));
-        jPDatosComplementarios.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true), "Datos Complementarios", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(51, 102, 255))); // NOI18N
+        jPDatosComplementarios.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true), "Datos Complementarios", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(51, 102, 255)));
 
         jLURL.setText("URL:");
 
@@ -154,7 +154,7 @@ public class VistaClientes extends javax.swing.JFrame {
 
         jTTelefono.setEditable(false);
 
-        jCCiudad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Barranquilla", "Bogotá", "Cali", "Cartagena", "Medellin" }));
+        jCCiudad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Barranquilla", "Bogotá", "Cali", "Cartagena", "Medellin" }));
         jCCiudad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCCiudadActionPerformed(evt);

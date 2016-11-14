@@ -28,6 +28,8 @@ public class ControladorMenu implements ActionListener{
         this.vistaM.jMCotizar.addActionListener(this);
         this.vistaM.jMProducto.addActionListener(this);
         this.vistaM.jMVendedor.addActionListener(this);
+        
+        this.vistaM.setVisible(true);
     }
     
     
