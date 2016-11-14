@@ -44,7 +44,6 @@ public class VistaCotizaciones extends javax.swing.JFrame {
         jLDescripción = new javax.swing.JLabel();
         jLVendedor = new javax.swing.JLabel();
         jLFFestimadaCierre = new javax.swing.JLabel();
-        jFFestimadaCierre = new javax.swing.JFormattedTextField();
         jLPorcentajeCierre = new javax.swing.JLabel();
         jTPorcentajeCierre = new javax.swing.JTextField();
         jLNumeroCotizacion = new javax.swing.JLabel();
@@ -53,6 +52,8 @@ public class VistaCotizaciones extends javax.swing.JFrame {
         jCVendedor = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTDescripcion = new javax.swing.JTextArea();
+        jFFestimadaCierre = new javax.swing.JFormattedTextField();
+        jBnuevaCotiza = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableDetalleProductos = new javax.swing.JTable();
@@ -62,6 +63,9 @@ public class VistaCotizaciones extends javax.swing.JFrame {
         jTSubTotal = new javax.swing.JTextField();
         jTTotal = new javax.swing.JTextField();
         jTiva = new javax.swing.JTextField();
+        jLproductoEliminar = new javax.swing.JLabel();
+        jTproductoEliminar = new javax.swing.JTextField();
+        jBEliminar = new javax.swing.JButton();
         jBCrearCotizacion = new javax.swing.JButton();
         jBModificar = new javax.swing.JButton();
         jBConsultar = new javax.swing.JButton();
@@ -95,19 +99,17 @@ public class VistaCotizaciones extends javax.swing.JFrame {
 
         jLFFestimadaCierre.setText("Fecha estimada de cierre:");
 
-        jFFestimadaCierre.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
-        jFFestimadaCierre.setText("dd/mm/aaaa");
-        jFFestimadaCierre.setToolTipText("dd/mm/aaaa");
-
         jLPorcentajeCierre.setText("Porcentaje de cierre:");
 
         jLNumeroCotizacion.setText("Número de cotización:");
 
-        jTNumeroCotizacion.setEditable(false);
-
         jTDescripcion.setColumns(10);
         jTDescripcion.setRows(5);
         jScrollPane2.setViewportView(jTDescripcion);
+
+        jFFestimadaCierre.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("d/MM/yyyy"))));
+
+        jBnuevaCotiza.setText("Nueva");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -128,25 +130,26 @@ public class VistaCotizaciones extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jCCliente, 0, 248, Short.MAX_VALUE)
                             .addComponent(jCVendedor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLNumeroCotizacion)
-                    .addComponent(jLFFestimadaCierre)
-                    .addComponent(jLPorcentajeCierre))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jFFestimadaCierre, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(31, 31, 31))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jTPorcentajeCierre)
-                                .addGap(52, 52, 52))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTNumeroCotizacion, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(52, 52, 52))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLNumeroCotizacion)
+                            .addComponent(jLFFestimadaCierre)
+                            .addComponent(jLPorcentajeCierre))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTNumeroCotizacion, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTPorcentajeCierre, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jFFestimadaCierre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(19, 19, 19))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jBnuevaCotiza)
+                        .addGap(115, 115, 115))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -166,16 +169,19 @@ public class VistaCotizaciones extends javax.swing.JFrame {
                         .addComponent(jLPorcentajeCierre)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLFFestimadaCierre)
-                            .addComponent(jFFestimadaCierre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLDescripción))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLDescripción))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLFFestimadaCierre)
+                            .addComponent(jFFestimadaCierre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBnuevaCotiza)
+                        .addGap(29, 29, 29))))
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -183,13 +189,10 @@ public class VistaCotizaciones extends javax.swing.JFrame {
 
         jTableDetalleProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1", "Disco Duro 1TB", "$186.000", "$186.000"},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Cantidad", "Productos", "Precio Unitario", "Precio Total"
+                "Cantidad", "Número de parte", "Producto", "Precio Venta", "Precio Total"
             }
         ));
         jScrollPane1.setViewportView(jTableDetalleProductos);
@@ -200,6 +203,17 @@ public class VistaCotizaciones extends javax.swing.JFrame {
 
         jLTotal.setText("Total:");
 
+        jLproductoEliminar.setText("Producto a eliminar de la cotización");
+
+        jTproductoEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTproductoEliminarActionPerformed(evt);
+            }
+        });
+
+        jBEliminar.setText("Eliminar");
+        jBEliminar.setToolTipText("");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -207,13 +221,22 @@ public class VistaCotizaciones extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 668, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLiva)
-                            .addComponent(jLSubTotal)
-                            .addComponent(jLTotal))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLTotal))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jTproductoEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jBEliminar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLiva))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLproductoEliminar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLSubTotal)))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -227,16 +250,24 @@ public class VistaCotizaciones extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTSubTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLSubTotal))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLiva)
-                    .addComponent(jTiva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jTSubTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLSubTotal)))
+                            .addComponent(jLproductoEliminar, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLiva)
+                            .addComponent(jTiva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTproductoEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jBEliminar)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLTotal)
                     .addComponent(jTTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -319,7 +350,7 @@ public class VistaCotizaciones extends javax.swing.JFrame {
                     .addComponent(jLBuscarProducto)
                     .addComponent(jTBuscarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBbuscarProducto))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
@@ -383,6 +414,10 @@ public class VistaCotizaciones extends javax.swing.JFrame {
     private void jTcantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTcantidadActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTcantidadActionPerformed
+
+    private void jTproductoEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTproductoEliminarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTproductoEliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -480,10 +515,12 @@ public class VistaCotizaciones extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton jBConsultar;
     public javax.swing.JButton jBCrearCotizacion;
+    public javax.swing.JButton jBEliminar;
     public javax.swing.JButton jBModificar;
     public javax.swing.JButton jBSalir;
     public javax.swing.JButton jBagregarproducto;
     public javax.swing.JButton jBbuscarProducto;
+    public javax.swing.JButton jBnuevaCotiza;
     public javax.swing.JComboBox<String> jCCliente;
     public javax.swing.JComboBox<String> jCVendedor;
     public javax.swing.JFormattedTextField jFFestimadaCierre;
@@ -501,6 +538,7 @@ public class VistaCotizaciones extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     public javax.swing.JLabel jLiva;
     public javax.swing.JLabel jLprecioVenta;
+    public javax.swing.JLabel jLproductoEliminar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -509,7 +547,7 @@ public class VistaCotizaciones extends javax.swing.JFrame {
     public javax.swing.JTextField jTBuscarProducto;
     public javax.swing.JTextArea jTDescripcion;
     public javax.swing.JTextField jTNumeroCotizacion;
-    private javax.swing.JTextField jTPorcentajeCierre;
+    public javax.swing.JTextField jTPorcentajeCierre;
     public javax.swing.JTextField jTSubTotal;
     public javax.swing.JTextField jTTotal;
     public javax.swing.JTable jTableDetalleProductos;
@@ -518,5 +556,6 @@ public class VistaCotizaciones extends javax.swing.JFrame {
     public javax.swing.JTextField jTnumParte;
     public javax.swing.JTextField jTprecioVenta;
     public javax.swing.JTextField jTproducto;
+    public javax.swing.JTextField jTproductoEliminar;
     // End of variables declaration//GEN-END:variables
 }

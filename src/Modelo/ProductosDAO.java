@@ -49,14 +49,14 @@ public class ProductosDAO {
         ResultSet rs; //Para almacenar el resultado de la consulta
         
         //Creamos la sentencia SQL
-        String sql = "select * from productos where nombre_parte = '"+nomParte+"' ";
+        String sql = "select * from productos where numero_parte = '"+nomParte+"' ";
         try{
             st = conn.createStatement();
             rs = st.executeQuery(sql);
             //Extraer los datos d ela consulta
             if(rs.next()){
               Productos producto =new Productos(); 
-              producto.setNombreParte(rs.getString("nombre_Parte"));
+              producto.setNombreParte(rs.getString("numero_Parte"));
               producto.setNombreProducto(rs.getString("nombre"));
               producto.setCantidad(rs.getString("cantidad"));
               producto.setPrecioVenta(rs.getString("precio_venta"));

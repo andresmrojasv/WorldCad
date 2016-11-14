@@ -15,6 +15,8 @@ public class Productos {
     private String cantidad; 
     private String precioVenta;
 
+   
+    
     public Productos(String nombreParte, String nombreProducto, String cantidad, String precioVenta) {
         this.nombreParte = nombreParte;
         this.nombreProducto = nombreProducto;
