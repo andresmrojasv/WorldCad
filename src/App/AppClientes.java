@@ -23,7 +23,7 @@ public class AppClientes {
         VistaClientes vistaclientes=new VistaClientes();
         ClientesDAO clientesDAO=new ClientesDAO();
         
-        ControladorClientes controladorclientes=new ControladorClientes(clientesDAO, vistaclientes);
+       // ControladorClientes controladorclientes=new ControladorClientes(clientesDAO, vistaclientes);
         
     }
     

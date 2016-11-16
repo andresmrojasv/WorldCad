@@ -13,27 +13,27 @@ import java.io.Serializable;
  */
 public class Vendedores implements Serializable {
 
-    String Identificacion;
+    private int  Identificacion;
     private String nombre;
-    private String sucursal;
+    private String Ciudades;
     private String Correo;
 
-    public Vendedores() {};
+    public Vendedores() {
+    }
+
     
-    public Vendedores(String Identificacion, String nombre, String sucursal, String Correo) {
+    public Vendedores(int Identificacion, String nombre, String Ciudades, String Correo) {
         this.Identificacion = Identificacion;
         this.nombre = nombre;
-        this.sucursal = sucursal;
+        this.Ciudades = Ciudades;
         this.Correo = Correo;
     }
 
-  
-
-    public String getIdentificacion() {
+    public int getIdentificacion() {
         return Identificacion;
     }
 
-    public void setIdentificacion(String Identificacion) {
+    public void setIdentificacion(int Identificacion) {
         this.Identificacion = Identificacion;
     }
 
@@ -45,12 +45,12 @@ public class Vendedores implements Serializable {
         this.nombre = nombre;
     }
 
-    public String getSucursal() {
-        return sucursal;
+    public String getCiudades() {
+        return Ciudades;
     }
 
-    public void setSucursal(String sucursal) {
-        this.sucursal = sucursal;
+    public void setCiudades(String Ciudades) {
+        this.Ciudades = Ciudades;
     }
 
     public String getCorreo() {

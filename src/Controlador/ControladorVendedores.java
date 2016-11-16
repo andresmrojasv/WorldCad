@@ -12,6 +12,7 @@ import Vista.VistaVendedores;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -24,113 +25,134 @@ public class ControladorVendedores implements ActionListener {
     private VendedoresDAO vendedordao = new VendedoresDAO();
     private VistaVendedores vistavendedor;
     private VistaMenu vistamenu;
+    private Vendedores vendedores;
 
     public ControladorVendedores(VistaVendedores vistavendedor, VistaMenu vistamenu) throws IOException, ClassNotFoundException {
+        this.vendedordao = vendedordao;
         this.vistavendedor = vistavendedor;
-        this.vistamenu = vistamenu;
-       
+
         this.vistavendedor.jBConsultar.addActionListener(this);
         this.vistavendedor.jBEliminar.addActionListener(this);
         this.vistavendedor.jBModificarVendedor.addActionListener(this);
-        this.vistavendedor.jBRegistrarVendedor.addActionListener(this);
+        this.vistavendedor.jBCrregistrar.addActionListener(this);
         this.vistavendedor.jCSucursal.addActionListener(this);
+        this.vistavendedor.jBnuevoCliente.addActionListener(this);
+        this.vistavendedor.jBVistaMENU.addActionListener(this);
+
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand() == " Nuevo vendedor ") {
-
+        if (e.getActionCommand() == "Nuevo Vendedor") {
+            System.out.println("1");
             vistavendedor.jBConsultar.setEnabled(false);
             vistavendedor.jBEliminar.setEnabled(false);
             vistavendedor.jBModificarVendedor.setEnabled(false);
-            vistavendedor.jBNuevoVendedor.setEnabled(false);
-            vistavendedor.jBRegistrarVendedor.setEnabled(true);
-            vistavendedor.jBSalirVendedor.setEnabled(true);
+            vistavendedor.jBnuevoCliente.setEnabled(false);
+            vistavendedor.jBCrregistrar.setEnabled(true);
+            vistavendedor.jBVistaMENU.setEnabled(true);
 
-            vistavendedor.jTCorreoVendedor.setEditable(true);
             vistavendedor.jTIdentVendedor.setEditable(true);
             vistavendedor.jTNombreVendedor.setEditable(true);
             vistavendedor.jCSucursal.setEditable(true);
+            vistavendedor.jTCorreoVendedor.setEditable(true);
+
+            vistavendedor.jTIdentVendedor.setText("");
+            vistavendedor.jTNombreVendedor.setText("");
+            vistavendedor.jTCorreoVendedor.setText("");
 
         }
-        if (e.getActionCommand() == " Registrar") {
-            String identificacion = vistavendedor.jTIdentVendedor.getText();
-            String nombre = vistavendedor.jTNombreVendedor.getText();
-            String sucursal = vistavendedor.jCSucursal.getActionCommand();
-            
-            String correo = vistavendedor.jTCorreoVendedor.getText();
+        if (e.getActionCommand() == "Registrar") {
+            System.out.println("1");
+            int identificacion = Integer.parseInt(vistavendedor.jTIdentVendedor.getText());
+            String nombre = this.vistavendedor.jTNombreVendedor.getText();
+            String Ciudades = (String) (this.vistavendedor.jCSucursal.getSelectedItem());
+            String correo = this.vistavendedor.jTCorreoVendedor.getText();
 
-            vendedordao.RegistrarVendedor(new Vendedores(identificacion, nombre, sucursal, correo));
+            this.vendedordao.RegistrarVendedor(new Vendedores(identificacion, nombre, Ciudades, correo));
 
             vistavendedor.jBConsultar.setEnabled(true);
             vistavendedor.jBEliminar.setEnabled(true);
             vistavendedor.jBModificarVendedor.setEnabled(false);
-            vistavendedor.jBNuevoVendedor.setEnabled(true);
-            vistavendedor.jBRegistrarVendedor.setEnabled(false);
-            vistavendedor.jBSalirVendedor.setEnabled(true);
+            vistavendedor.jBCrregistrar.setEnabled(false);
+            vistavendedor.jBVistaMENU.setEnabled(true);
 
             vistavendedor.jTCorreoVendedor.setEditable(false);
             vistavendedor.jTIdentVendedor.setEditable(false);
-            vistavendedor.jTNombreVendedor.setEditable(false);
             vistavendedor.jCSucursal.setEditable(false);
+            vistavendedor.jTNombreVendedor.setEditable(false);
 
-            vistavendedor.jTNombreVendedor.setText("");
             vistavendedor.jTIdentVendedor.setText("");
+            vistavendedor.jTNombreVendedor.setText("");
             vistavendedor.jTCorreoVendedor.setText("");
 
         }
+
         if (e.getActionCommand() == "Consultar") {
             ArrayList<Vendedores> vendedor = vendedordao.ConsultarVendedor(vistavendedor.jTIdentVendedor.getText());
             if (!vendedor.isEmpty()) {
-                vistavendedor.jTIdentVendedor.setText(vendedor.get(0).getIdentificacion());
+
                 vistavendedor.jTNombreVendedor.setText(vendedor.get(0).getNombre());
+                vistavendedor.jCSucursal.setSelectedItem(vendedor.get(0).getCiudades());
                 vistavendedor.jTCorreoVendedor.setText(vendedor.get(0).getCorreo());
 
-                vistavendedor.jTCorreoVendedor.setEditable(true);
                 vistavendedor.jTIdentVendedor.setEditable(true);
                 vistavendedor.jTNombreVendedor.setEditable(true);
                 vistavendedor.jCSucursal.setEditable(true);
+                vistavendedor.jTCorreoVendedor.setEditable(true);
+
             } else {
                 JOptionPane.showMessageDialog(null, "El vendedor no existe ");
+
+                vistavendedor.jTCorreoVendedor.setText("");
+                vistavendedor.jTNombreVendedor.setText("");
+                vistavendedor.jTIdentVendedor.setText("");
+
             }
 
         }
-        if (e.getSource() == vistavendedor.jBModificarVendedor) {
-            String identificacion = vistavendedor.jTIdentVendedor.getText();
+        if (e.getActionCommand() == "Modificar") {
+
+            int identificacion = Integer.parseInt(vistavendedor.jTIdentVendedor.getText());
             String nombre = vistavendedor.jTNombreVendedor.getText();
-            String sucursal = vistavendedor.jCSucursal.getActionCommand();
+            String Ciudades = (String) (this.vistavendedor.jCSucursal.getSelectedItem());
             String correo = vistavendedor.jTCorreoVendedor.getText();
 
-            vendedordao.ModificarVendedor(new Vendedores(identificacion, nombre, sucursal, correo));
+            VendedoresDAO.ModificarVendedor(new Vendedores(identificacion, nombre, Ciudades, correo));
 
+            vistavendedor.jBnuevoCliente.setEnabled(true);
             vistavendedor.jBConsultar.setEnabled(true);
-            vistavendedor.jBNuevoVendedor.setEnabled(true);
+            vistavendedor.jBVistaMENU.setEnabled(true);
 
-            vistavendedor.jTCorreoVendedor.setEditable(false);
             vistavendedor.jTIdentVendedor.setEditable(false);
             vistavendedor.jTNombreVendedor.setEditable(false);
             vistavendedor.jCSucursal.setEditable(false);
+            vistavendedor.jTCorreoVendedor.setEditable(false);
 
-            vistavendedor.jTNombreVendedor.setText("");
             vistavendedor.jTIdentVendedor.setText("");
+            vistavendedor.jTNombreVendedor.setText("");
             vistavendedor.jTCorreoVendedor.setText("");
 
         }
         if (e.getActionCommand() == "Eliminar") {
             vendedordao.EliminarVendedor(vistavendedor.jTIdentVendedor.getText());
 
-            vistavendedor.jTCorreoVendedor.setEditable(false);
             vistavendedor.jTIdentVendedor.setEditable(false);
             vistavendedor.jTNombreVendedor.setEditable(false);
             vistavendedor.jCSucursal.setEditable(false);
+            vistavendedor.jTCorreoVendedor.setEditable(false);
 
-            vistavendedor.jTNombreVendedor.setText("");
             vistavendedor.jTIdentVendedor.setText("");
+            vistavendedor.jTNombreVendedor.setText("");
             vistavendedor.jTCorreoVendedor.setText("");
         }
-        if (e.getSource() == vistavendedor.jBSalirVendedor) {
+        if ("Menu".equals(e.getActionCommand())) {
+            
+           // VistaMenu vistamenu = new VistaMenu();
+           // ControladorMenu controladormenu = new ControladorMenu(vistamenu);
+            //this.vistavendedor.hide();
             this.vistavendedor.dispose();
-            this.vistamenu.setVisible(true);
+           this.vistamenu.setVisible(true);
 
         }
     }

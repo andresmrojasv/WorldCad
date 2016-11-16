@@ -38,9 +38,7 @@ public class VistaVendedores extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jBEliminar = new javax.swing.JButton();
-        jBSalirVendedor = new javax.swing.JButton();
-        jBConsultar = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLIdentVendedor = new javax.swing.JLabel();
         jLNombVendedor = new javax.swing.JLabel();
@@ -51,27 +49,27 @@ public class VistaVendedores extends javax.swing.JFrame {
         jTNombreVendedor = new javax.swing.JTextField();
         jTCorreoVendedor = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jBNuevoVendedor = new javax.swing.JButton();
-        jBRegistrarVendedor = new javax.swing.JButton();
+        jBnuevoCliente = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jBEliminar = new javax.swing.JButton();
         jBModificarVendedor = new javax.swing.JButton();
+        jBConsultar = new javax.swing.JButton();
+        jBCrregistrar = new javax.swing.JButton();
+        jBVistaMENU = new javax.swing.JButton();
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Vendedor");
-
-        jBEliminar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jBEliminar.setText("Eliminar");
-        jBEliminar.setToolTipText("");
-
-        jBSalirVendedor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jBSalirVendedor.setText("Salir");
-
-        jBConsultar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jBConsultar.setText("Consultar ");
-        jBConsultar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBConsultarActionPerformed(evt);
-            }
-        });
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true), "Datos Vendedor", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12), new java.awt.Color(51, 102, 255))); // NOI18N
@@ -90,21 +88,22 @@ public class VistaVendedores extends javax.swing.JFrame {
 
         jTIdentVendedor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
-        jCSucursal.setEditable(true);
         jCSucursal.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jCSucursal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Barranquilla ", "Bogota", "Cali", "Cartagena ", "Medellin" }));
         jCSucursal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jTNombreVendedor.setEditable(false);
         jTNombreVendedor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
+        jTCorreoVendedor.setEditable(false);
         jTCorreoVendedor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel1.setText("Sucursal");
         jLabel1.setRequestFocusEnabled(false);
 
-        jBNuevoVendedor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jBNuevoVendedor.setText("Nuevo vendedor");
+        jBnuevoCliente.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jBnuevoCliente.setText("Nuevo Vendedor");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -122,17 +121,17 @@ public class VistaVendedores extends javax.swing.JFrame {
                             .addComponent(jLIdentVendedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jCSucursal, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTNombreVendedor, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTIdentVendedor, javax.swing.GroupLayout.Alignment.LEADING)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCSucursal, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTNombreVendedor)
+                            .addComponent(jTIdentVendedor)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTCorreoVendedor)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jBNuevoVendedor)
-                .addGap(26, 26, 26))
+                .addGap(18, 18, 18)
+                .addComponent(jBnuevoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,7 +140,7 @@ public class VistaVendedores extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLIdentVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTIdentVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBNuevoVendedor))
+                    .addComponent(jBnuevoCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(21, 21, 21)
@@ -158,48 +157,72 @@ public class VistaVendedores extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTCorreoVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jTCorreoVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
-        jBRegistrarVendedor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jBRegistrarVendedor.setText("Registrar");
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 102, 255)));
+
+        jBEliminar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jBEliminar.setText("Eliminar");
+        jBEliminar.setToolTipText("");
 
         jBModificarVendedor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jBModificarVendedor.setText("Modificar");
+
+        jBConsultar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jBConsultar.setText("Consultar");
+
+        jBCrregistrar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jBCrregistrar.setLabel("Registrar");
+
+        jBVistaMENU.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jBVistaMENU.setLabel("Menu");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(jBConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jBModificarVendedor)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jBCrregistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jBVistaMENU)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jBModificarVendedor, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
+                    .addComponent(jBEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBCrregistrar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBVistaMENU, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBConsultar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jBConsultar)
-                .addGap(18, 18, 18)
-                .addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jBRegistrarVendedor)
-                .addGap(18, 18, 18)
-                .addComponent(jBModificarVendedor)
-                .addGap(18, 18, 18)
-                .addComponent(jBSalirVendedor)
-                .addContainerGap(68, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(7, 7, 7)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBConsultar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBRegistrarVendedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBModificarVendedor)
-                    .addComponent(jBSalirVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -229,10 +252,6 @@ public class VistaVendedores extends javax.swing.JFrame {
         }
 
     }
-
-    private void jBConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBConsultarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBConsultarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -272,18 +291,20 @@ public class VistaVendedores extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton jBConsultar;
+    public javax.swing.JButton jBCrregistrar;
     public javax.swing.JButton jBEliminar;
     public javax.swing.JButton jBModificarVendedor;
-    public javax.swing.JButton jBNuevoVendedor;
-    public javax.swing.JButton jBRegistrarVendedor;
-    public javax.swing.JButton jBSalirVendedor;
+    public javax.swing.JButton jBVistaMENU;
+    public javax.swing.JButton jBnuevoCliente;
     public javax.swing.JComboBox<String> jCSucursal;
     public javax.swing.JLabel jLCorreo;
     public javax.swing.JLabel jLIdentVendedor;
     public javax.swing.JLabel jLNombVendedor;
     public javax.swing.JLabel jLSucursalVendedor;
     public javax.swing.JLabel jLabel1;
-    public javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     public javax.swing.JTextField jTCorreoVendedor;
     public javax.swing.JTextField jTIdentVendedor;
     public javax.swing.JTextField jTNombreVendedor;

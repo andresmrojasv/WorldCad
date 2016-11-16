@@ -37,8 +37,9 @@ public class VistaMenu extends javax.swing.JFrame {
         jMCotizar = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenu6 = new javax.swing.JMenu();
+        jMSalir = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Menú Worldcad");
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/worldcadface.jpg"))); // NOI18N
@@ -67,6 +68,10 @@ public class VistaMenu extends javax.swing.JFrame {
         jMenuBar2.add(jMenu5);
 
         jMenu6.setText("Salir");
+
+        jMSalir.setText("Salir");
+        jMenu6.add(jMSalir);
+
         jMenuBar2.add(jMenu6);
 
         setJMenuBar(jMenuBar2);
@@ -125,6 +130,7 @@ public class VistaMenu extends javax.swing.JFrame {
     public javax.swing.JMenuItem jMCliente;
     public javax.swing.JMenuItem jMCotizar;
     public javax.swing.JMenuItem jMProducto;
+    public javax.swing.JMenuItem jMSalir;
     public javax.swing.JMenuItem jMVendedor;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;

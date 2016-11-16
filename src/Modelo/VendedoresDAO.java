@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -18,21 +19,23 @@ import javax.swing.JOptionPane;
  * @author daybe
  */
 public class VendedoresDAO {
+    private Vendedores vendedores;
 
     public static void RegistrarVendedor(Vendedores v) {
         Conexion.Connection();
         Connection conec = Conexion.getCnnection();
         Statement st;
-        String sql = " INSERT INTO VENDEDORES(IDENTIFICACION, NOMBRE, CORREO, CIUDAD_ID') VALUES ('" + v.getIdentificacion() + "," + v.getNombre() + "," + v.getCorreo() + "," + v.getSucursal() + "')";
+        String sql = "INSERT INTO VENDEDORES(IDENTIFICACION, NOMBRE, CIUDAD_ID, CORREO) VALUES ('" + v.getIdentificacion() + "','" + v.getNombre() + "',(SELECT CIUDAD_ID FROM CIUDADES WHERE CIUDAD='" + v.getCiudades() + "'),'" + v.getCorreo() + "')";
         try {
 
             st = conec.createStatement();
-            st.equals(sql);
-            st.close();
-            JOptionPane.showMessageDialog(null, "Se ha registrado el vendedor correctamente", "Informecion", JOptionPane.INFORMATION_MESSAGE);
+            st.executeUpdate(sql);
+            conec.close();
+            st.close();           
+            JOptionPane.showMessageDialog(null, "Se ha registrado el vendedor correctamente", "Informacion", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-            JOptionPane.showMessageDialog(null, "No se regidtro el vendedor");
+            JOptionPane.showMessageDialog(null, "No se registro el vendedor ss");
         }
     }
 
@@ -43,15 +46,15 @@ public class VendedoresDAO {
         Statement st;
         ResultSet rs;
 
-        String sql = " SELECT IDENTIFICACION, NOMBRE,  CORREO, CIUDAD_ID FROM VENDEDORES WHERE IDENTIFICACION FROM VENDEDORES = '" + Identificacion + '"';
+        String sql = " SELECT IDENTIFICACION, NOMBRE, CIUDAD, CORREO FROM VENDEDORES, CIUDADES WHERE (VENDEDORES.CIUDAD_ID = CIUDADES.CIUDAD_ID) AND IDENTIFICACION = "+ Identificacion + "";
         try {
             st = conec.createStatement();
             rs = st.executeQuery(sql);
             if (rs.next()) {
                 Vendedores vendedor = new Vendedores();
-                vendedor.setIdentificacion(rs.getString("IDENTIFICACION"));
+                vendedor.setIdentificacion(rs.getInt("IDENTIFICACION"));
                 vendedor.setNombre(rs.getString("NOMBRE"));
-                vendedor.setSucursal(rs.getString("CIUDAD_ID"));
+                vendedor.setCiudades(rs.getString("CIUDAD"));
                 vendedor.setCorreo(rs.getString("CORREO"));
                 miVendedor.add(vendedor);
 
@@ -61,7 +64,7 @@ public class VendedoresDAO {
             rs.close();
         } catch (SQLException v) {
             v.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Error al consultar el vendedor\n"+v);
+            JOptionPane.showMessageDialog(null, "Error al consultar el vendedor"+v);
         }
         return miVendedor;
     }
@@ -70,7 +73,7 @@ public class VendedoresDAO {
         Conexion.Connection();
         Connection conec = Conexion.getCnnection();
         Statement st;
-        String sql = "UPDATE VENDEDORES SET NOMBRE ='" + v.getNombre() + "', SUCURSAL='" + v.getSucursal() + "', CORREO ='" + v.getCorreo() + "' where IDENTIFICACION = '" + v.getIdentificacion() + "'";
+        String sql = "UPDATE VENDEDORES SET NOMBRE ='" + v.getNombre() + "', CIUDAD_ID=(SELECT CIUDAD_ID FROM CIUDADES WHERE CIUDAD='" + v.getCiudades() + "'), CORREO ='" + v.getCorreo() + "' WHERE IDENTIFICACION = '" + v.getIdentificacion() + "'";
         try {
             st = conec.createStatement();
             int confirmar = st.executeUpdate(sql);
@@ -91,7 +94,7 @@ public class VendedoresDAO {
         Conexion.Connection();
         Connection conec = Conexion.getCnnection();
         Statement st;
-        String sql = "DELETE FROM VENDEDORES  WHERE IDENTIFICACION'" + Identificacion + "'";
+        String sql = "DELETE FROM VENDEDORES  WHERE IDENTIFICACION = '" + Identificacion + "'";
 
         try {
             st = conec.createStatement();

@@ -9,8 +9,10 @@ import Modelo.Clientes;
 import Modelo.ClientesDAO;
 import Vista.VistaClientes;
 import Vista.VistaMenu;
+import Vista.VistaProductos;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -25,8 +27,9 @@ public class ControladorClientes implements ActionListener {
     private Clientes clientes;
     private ClientesDAO clientesdao = new ClientesDAO();
     private VistaClientes vistaclientes;
+    private VistaMenu VistaM;
 
-    public ControladorClientes(ClientesDAO clientesdao, VistaClientes vistaclientes) {
+    public ControladorClientes( VistaClientes vistaclientes, VistaMenu VistaM) throws IOException, ClassNotFoundException{
         this.clientesdao = clientesdao;
         this.vistaclientes = vistaclientes;
 
@@ -40,6 +43,7 @@ public class ControladorClientes implements ActionListener {
         this.vistaclientes.jBSalir.addActionListener(this);
     }
 
+   
     @Override
     public void actionPerformed(ActionEvent e) {
 

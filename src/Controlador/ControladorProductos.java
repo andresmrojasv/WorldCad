@@ -35,6 +35,10 @@ public class ControladorProductos implements ActionListener{
         
     }
 
+    ControladorProductos(VistaProductos vistaP, VistaMenu vistaM) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand() == "Nuevo Producto"){
@@ -78,7 +82,7 @@ public class ControladorProductos implements ActionListener{
             
         }
         
-        if(e.getActionCommand() == "Consultar"){
+       /* if(e.getActionCommand() == "Consultar"){
             ArrayList<Productos> producto = modelo.consultarProducto(vistaProducto.jTnomParte.getText());
             
             if(!producto.isEmpty()){
@@ -96,7 +100,7 @@ public class ControladorProductos implements ActionListener{
                JOptionPane.showMessageDialog(null, "El Contacto no Existe\n");
            }
         
-        }
+        }*/
         
         if(e.getActionCommand() == "Modificar" ){
            String nomParte = vistaProducto.jTnomParte.getText();
