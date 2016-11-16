@@ -37,7 +37,7 @@ public class VistaProductos extends javax.swing.JFrame {
         jTnomProducto = new javax.swing.JTextField();
         jTcantidad = new javax.swing.JTextField();
         jTprecioVenta = new javax.swing.JTextField();
-        jButnProducto = new javax.swing.JButton();
+        jBNuevoProducto = new javax.swing.JButton();
         jButRegistrar = new javax.swing.JButton();
         jButModificar = new javax.swing.JButton();
         jButConsultar = new javax.swing.JButton();
@@ -48,9 +48,9 @@ public class VistaProductos extends javax.swing.JFrame {
         setTitle("Productos");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true), "Datos Producto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(51, 102, 255))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true), "Datos Producto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(51, 102, 255)));
 
-        jLabel1.setText("Nombre de Parte");
+        jLabel1.setText("Numero de Parte");
 
         jLabel2.setText("Nombre del Producto");
 
@@ -66,7 +66,7 @@ public class VistaProductos extends javax.swing.JFrame {
 
         jTprecioVenta.setEditable(false);
 
-        jButnProducto.setText("Nuevo Producto");
+        jBNuevoProducto.setText("Nuevo Producto");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -86,9 +86,9 @@ public class VistaProductos extends javax.swing.JFrame {
                     .addComponent(jTnomProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jTnomParte, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButnProducto)))
-                .addContainerGap(35, Short.MAX_VALUE))
+                        .addGap(37, 37, 37)
+                        .addComponent(jBNuevoProducto)))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -97,7 +97,7 @@ public class VistaProductos extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTnomParte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButnProducto))
+                    .addComponent(jBNuevoProducto))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -208,12 +208,12 @@ public class VistaProductos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton jBNuevoProducto;
     public javax.swing.JButton jButConsultar;
     public javax.swing.JButton jButEliminar;
     public javax.swing.JButton jButModificar;
     public javax.swing.JButton jButRegistrar;
     public javax.swing.JButton jButSalir;
-    public javax.swing.JButton jButnProducto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

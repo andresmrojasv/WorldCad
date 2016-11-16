@@ -30,6 +30,8 @@ public class ControladorMenu implements ActionListener {
         this.vistaM.jMProducto.addActionListener(this);
         this.vistaM.jMVendedor.addActionListener(this);
         this.vistaM.jMSalir.addActionListener(this);
+        
+        this.vistaM.setVisible(true);
     }
 
     @Override
@@ -46,7 +48,7 @@ public class ControladorMenu implements ActionListener {
             }
             VistaV.setVisible(true);
             vistaM.setVisible(false);
-            vistaM.hide();
+            vistaM.dispose();
         }
         if (e.getActionCommand() == "Cliente") {
             try {
@@ -63,7 +65,8 @@ public class ControladorMenu implements ActionListener {
         if ("Producto".equals(e.getActionCommand())) {
 
             VistaProductos vistaP = new VistaProductos();
-           
+            ProductosDAO productoD = new ProductosDAO();
+            ControladorProductos controladorP = new ControladorProductos(vistaP, productoD);
 
             vistaP.setVisible(true);
         }

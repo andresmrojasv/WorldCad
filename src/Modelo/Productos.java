@@ -10,15 +10,14 @@ package Modelo;
  * @author ESTACION
  */
 public class Productos {
-    private String nombreParte; 
+
+    private String nombreParte;
     private String nombreProducto;
-    private String cantidad; 
+    private String cantidad;
     private String precioVenta;
 
     public Productos() {
     }
-
-   
     
     public Productos(String nombreParte, String nombreProducto, String cantidad, String precioVenta) {
         this.nombreParte = nombreParte;
@@ -59,7 +58,4 @@ public class Productos {
         this.precioVenta = precioVenta;
     }
 
-   
-    
-    
 }

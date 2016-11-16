@@ -51,8 +51,11 @@ public class ControladorCotizaciones implements ActionListener {
         this.vistaC.jBnuevaCotiza.addActionListener(this);
         this.vistaC.jBEliminar.addActionListener(this);
         this.vistaC.jBSalir.addActionListener(this);
-        this.vistaC.jBnuevaCotiza.addActionListener(this);
         TablaProdcutos = (DefaultTableModel) this.vistaC.jTableDetalleProductos.getModel();
+
+        this.vistaC.jBEliminar.setVisible(false);
+        this.vistaC.jTproductoEliminar.setVisible(false);
+        this.vistaC.jLproductoEliminar.setVisible(false);
 
     }
 
@@ -108,7 +111,7 @@ public class ControladorCotizaciones implements ActionListener {
             for (DetalleCotizacion detalle : detalleCotiza) {
 
                 subtotal = subtotal + detalle.getPrecioTotal();
-                System.out.println("" + subtotal);
+
             }
             this.vistaC.jTSubTotal.setText(String.valueOf(decimales.format(subtotal)));
             this.vistaC.jTiva.setText(String.valueOf(decimales.format(iva = subtotal * 0.16)));
@@ -118,6 +121,7 @@ public class ControladorCotizaciones implements ActionListener {
             vistaC.jTproducto.setText(null);
             vistaC.jTprecioVenta.setText(null);
             vistaC.jTBuscarProducto.setText(null);
+
         }
         if (e.getActionCommand() == "Crear") {
             SimpleDateFormat date = new SimpleDateFormat("dd/mm/yyyy");
@@ -125,13 +129,33 @@ public class ControladorCotizaciones implements ActionListener {
             String vendedor = (String) (this.vistaC.jCVendedor.getSelectedItem());
             String descripcion = this.vistaC.jTDescripcion.getText();
             String fechaECierre = this.vistaC.jFFestimadaCierre.getText();
-            System.out.println("" + vistaC.jFFestimadaCierre.getText());
             double porcentajeCierre = Double.parseDouble(this.vistaC.jTPorcentajeCierre.getText());
 
             this.modeloCotiza.registrarCotizacion(new Cotizaciones(cliente, vendedor, descripcion, fechaECierre, porcentajeCierre), detalleCotiza, subtotal, iva, total);
+            vistaC.jTSubTotal.setText(null);
+            vistaC.jTiva.setText(null);
+            vistaC.jTTotal.setText(null);
+            vistaC.jTPorcentajeCierre.setText(null);
+            vistaC.jFFestimadaCierre.setText(null);
+            vistaC.jTDescripcion.setText(null);
+            int totalrow = TablaProdcutos.getRowCount();
+            for (int i = 0; i < totalrow; i++) {
+
+                TablaProdcutos.removeRow(0);
+
+            }
+
+            this.vistaC.jTNumeroCotizacion.setEditable(true);
+            this.vistaC.jTDescripcion.setEditable(false);
+            this.vistaC.jTPorcentajeCierre.setEditable(false);
+            this.vistaC.jFFestimadaCierre.setEditable(false);
+            this.vistaC.jTBuscarProducto.setEditable(false);
+            this.vistaC.jTcantidad.setEditable(false);
+            this.vistaC.jTproductoEliminar.setEditable(false);
 
         }
         if (e.getActionCommand() == "Modificar") {
+            String numcotiza = this.vistaC.jTNumeroCotizacion.getText();
             String cliente = (String) (this.vistaC.jCCliente.getSelectedItem());
             String vendedor = (String) (this.vistaC.jCVendedor.getSelectedItem());
             String descripcion = this.vistaC.jTDescripcion.getText();
@@ -143,7 +167,29 @@ public class ControladorCotizaciones implements ActionListener {
             double iva = Double.parseDouble(this.vistaC.jTiva.getText());
             double total = Double.parseDouble(this.vistaC.jTTotal.getText());
 
-            this.modeloCotiza.modificarCotizacion(new Cotizaciones(cliente, vendedor, descripcion, fechaECierre, porcentajeCierre), detalleCotiza, subtotal, iva, total);
+            this.modeloCotiza.modificarCotizacion(new Cotizaciones(cliente, vendedor, descripcion, fechaECierre, porcentajeCierre), detalleCotiza, subtotal, iva, total, numcotiza);
+
+            vistaC.jTSubTotal.setText(null);
+            vistaC.jTiva.setText(null);
+            vistaC.jTTotal.setText(null);
+            vistaC.jTPorcentajeCierre.setText(null);
+            vistaC.jFFestimadaCierre.setText(null);
+            vistaC.jTDescripcion.setText(null);
+            int totalrow = TablaProdcutos.getRowCount();
+            for (int i = 0; i < totalrow; i++) {
+
+                TablaProdcutos.removeRow(0);
+
+            }
+
+            this.vistaC.jTNumeroCotizacion.setEditable(true);
+            this.vistaC.jTDescripcion.setEditable(false);
+            this.vistaC.jTPorcentajeCierre.setEditable(false);
+            this.vistaC.jFFestimadaCierre.setEditable(false);
+            this.vistaC.jTBuscarProducto.setEditable(false);
+            this.vistaC.jTcantidad.setEditable(false);
+            this.vistaC.jTproductoEliminar.setEditable(false);
+
         }
         if (e.getActionCommand() == "Consultar") {
             ArrayList<Cotizaciones> DatosCotizacion = modeloCotiza.consultarCotizacion(vistaC.jTNumeroCotizacion.getText());
@@ -173,16 +219,14 @@ public class ControladorCotizaciones implements ActionListener {
                 }
 
                 this.vistaC.jTSubTotal.setText(String.valueOf(detalleCotiza.get(0).getSubTotal()));
-                this.vistaC.jTiva.setText(String.valueOf(decimales.format(detalleCotiza.get(0).getIva())));
+                this.vistaC.jTiva.setText(String.valueOf(detalleCotiza.get(0).getIva()));
                 this.vistaC.jTTotal.setText(String.valueOf(detalleCotiza.get(0).getTotal()));
 
             } else {
                 JOptionPane.showMessageDialog(null, "El Cliente no Existe\n");
             }
         }
-        if (e.getActionCommand() == "Nueva") {
 
-        }
         if (e.getActionCommand() == "Eliminar") {
             String eProduct = this.vistaC.jTproductoEliminar.getText();
             for (int i = 0; i <= detalleCotiza.size(); i++) {

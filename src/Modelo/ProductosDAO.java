@@ -25,7 +25,7 @@ public class ProductosDAO {
         Connection conn = Conexion.getCnnection(); //Para establecer conexiones con las bases de datos
         Statement st; //Para ejecutar sentecias SQL y enviarlas a las BBDD
          //Creamos la sentencia SQL
-        String sql ="insert into contacto(numero_parte,nombre,cantidad,precio_venta) values ('"+c.getNombreParte()+"','"+c.getNombreProducto()+"','"+c.getCantidad()+"','"+c.getPrecioVenta()+"')";
+        String sql ="insert into productos(numero_parte,nombre,cantidad,precio_venta) values ('"+c.getNombreParte()+"','"+c.getNombreProducto()+"','"+c.getCantidad()+"','"+c.getPrecioVenta()+"')";
          //Ejecuta la sentencia SQL
         try{
             st = conn.createStatement();
@@ -54,8 +54,9 @@ public class ProductosDAO {
             st = conn.createStatement();
             rs = st.executeQuery(sql);
             //Extraer los datos d ela consulta
+            
             if(rs.next()){
-              Productos producto =new Productos(); 
+              Productos producto = new Productos(); 
               producto.setNombreParte(rs.getString("numero_Parte"));
               producto.setNombreProducto(rs.getString("nombre"));
               producto.setCantidad(rs.getString("cantidad"));
@@ -69,7 +70,7 @@ public class ProductosDAO {
             rs.close();
         }catch(SQLException e){
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "no se pudo consultar el Contacto\n"+e);
+            JOptionPane.showMessageDialog(null, "no se pudo consultar el Producto\n"+e);
         }
         return bProducto; 
     }
@@ -80,14 +81,14 @@ public class ProductosDAO {
         Statement st; //Para ejecutar sentecias SQL y enviarlas a las BD
         
         //Creamos la sentencia SQL
-        String sql = "update contacto set movil='"+c.getNombreParte()+"',fijo='"+c.getNombreProducto()+"',correo='"+c.getCantidad()+"',web='"+c.getPrecioVenta()+"'";
+        String sql = "update productos set numero_parte='"+c.getNombreParte()+"',nombre='"+c.getNombreProducto()+"',cantidad='"+c.getCantidad()+"',precio_venta='"+c.getPrecioVenta()+"'";
         
         //Ejecuta la sentencia SQL
         try{
             st = conn.createStatement();
             int confirmar = st.executeUpdate(sql);
             if(confirmar==1){
-                JOptionPane.showMessageDialog(null,"Se ha modificado el contacto Exitosamente");
+                JOptionPane.showMessageDialog(null,"Se ha modificado el producto Exitosamente");
             }else{
                 JOptionPane.showMessageDialog(null,"Error al modificar el contacto");
             }
@@ -102,28 +103,23 @@ public class ProductosDAO {
     
     }
     
-    public void eliminarProducto(String nombre){
-    //Conexion y carga BD
+    public void eliminarProducto(String nombreParte){
         Conexion.Connection();
-        Connection conn = Conexion.getCnnection();//Para establecer conexiones con las bases de datos
-        Statement st;//Para ejecutar sentecias SQL y enviarlas a las BBDD
-        //Creamos la sentencia SQL
-        String sql = "delete from contacto where nombre= '"+nombre+"'";
-        
-        //Ejecuta la sentencia SQL
-        try{
-            st = conn.createStatement();
+        Connection conec = Conexion.getCnnection();
+        Statement st;
+        String sql = "DELETE FROM PRODUCTOS  WHERE NUMERO_PARTE = '" + nombreParte + "'";
+
+        try {
+            st = conec.createStatement();
             int confirmar = st.executeUpdate(sql);
-            if(confirmar==1){
-                JOptionPane.showMessageDialog(null,"Se ha eliminado el contacto Exitosamente");
-            }else{
-                JOptionPane.showMessageDialog(null,"Error al eliminar el contacto");
+            if (confirmar == 1) {
+                JOptionPane.showMessageDialog(null, "Se ha eliminado el vendedor exitosamente");
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al eliminar el vendedor");
             }
-            
-            //Cerramos conexiones
-            conn.close();
+            conec.close();
             st.close();
-        }catch(SQLException exe){
+        } catch (SQLException exe) {
             exe.printStackTrace();
         }
     }

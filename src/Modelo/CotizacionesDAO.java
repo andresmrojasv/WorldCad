@@ -1,4 +1,4 @@
-/*
+                        /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -50,8 +50,8 @@ public class CotizacionesDAO {
         int conteo = productos.size();
         for (DetalleCotizacion pro : productos) {
             conteo = conteo - 1;
-            String sql2 = "INSERT INTO DETALLE_COTIZACIONES (COTIZACIONES_ID,PRODUCTOS_ID,CANTIDAD,PRECIO_UNITARIO,PRECIO_TOTAL) VALUES ((SELECT COTIZACIONES_ID FROM COTIZACIONES WHERE IDENTIFICACION_COTIZACION= '" + ProxNumCot + "'),(SELECT PRODUCTOS_ID FROM PRODUCTOS WHERE NUMERO_PARTE='" + pro.getProducto() + "'),'" + pro.getCantidad() + "','" + pro.getPrecioVenta() + "','" + pro.getPrecioTotal() + "')";
-            System.out.println(""+pro.getProducto());
+            String sql2 = "INSERT INTO DETALLE_COTIZACIONES (COTIZACIONES_ID,PRODUCTOS_ID,CANTIDAD,PRECIO_UNITARIO,PRECIO_TOTAL) VALUES ((SELECT COTIZACIONES_ID FROM COTIZACIONES WHERE IDENTIFICACION_COTIZACION= '" + ProxNumCot + "'),(SELECT PRODUCTOS_ID FROM PRODUCTOS WHERE NUMERO_PARTE='" + pro.getNumParte() + "'),'" + pro.getCantidad() + "','" + pro.getPrecioVenta() + "','" + pro.getPrecioTotal() + "')";
+           
             try {
                 st = conn.createStatement();
                 st.executeUpdate(sql2);
@@ -73,14 +73,14 @@ public class CotizacionesDAO {
 
     }
 
-    public void modificarCotizacion(Cotizaciones cotiza, ArrayList modicotiza, double subtotal, double iva, double total) {
+    public void modificarCotizacion(Cotizaciones cotiza, ArrayList modicotiza, double subtotal, double iva, double total, String numcotiza) {
         Conexion.Connection();
         Connection conn = Conexion.getCnnection();//Para establecer conexiones con las bases de datos
         Statement st; //Para ejecutar sentecias SQL y enviarlas a las BD
 
         //Creamos la sentencia SQL
-        String sql = "UPDATE COTIZACIONES SET FECHA_EST_CIERRE='"+cotiza.getFechaEstCierre()+"', PORCENTAJE_CIERRE='"+cotiza.getPorcentajecierre()+"', DESCRIPCION='"+cotiza.getDescripcion()+"',CLIENTES_ID=(SELECT CLIENTES_ID FROM CLIENTES WHERE NOMBRE_EMPRESA='"+cotiza.getCliente()+"'),VENDEDORES_ID=(SELECT VENDEDORES_ID FROM VENDEDORES WHERE NOMBRE = '"+cotiza.getVendedor()+"'),SUBTOTAL='"+subtotal+"', IVA='"+iva+"',TOTAL='"+total+"' WHERE NUMERO_COTIZACION='"+cotiza.getNumCotizacion()+"'";
-
+        String sql = "UPDATE COTIZACIONES SET FECHA_EST_CIERRE='"+cotiza.getFechaEstCierre()+"', PORCENTAJE_CIERRE='"+cotiza.getPorcentajecierre()+"', DESCRIPCION='"+cotiza.getDescripcion()+"',CLIENTES_ID=(SELECT CLIENTES_ID FROM CLIENTES WHERE NOMBRE_EMPRESA='"+cotiza.getCliente()+"'),VENDEDORES_ID=(SELECT VENDEDORES_ID FROM VENDEDORES WHERE NOMBRE = '"+cotiza.getVendedor()+"'),SUBTOTAL='"+subtotal+"', IVA='"+iva+"',TOTAL='"+total+"' WHERE NUMERO_COTIZACION='"+numcotiza+"'";
+        System.out.println(""+sql);
         //Ejecuta la sentencia SQL
         try {
             st = conn.createStatement();

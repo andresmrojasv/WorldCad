@@ -1,10 +1,9 @@
- /*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package Controlador;
-
 import Modelo.Productos;
 import Modelo.ProductosDAO;
 import Vista.VistaProductos;
@@ -16,6 +15,7 @@ import javax.swing.JOptionPane;
 
 
 public class ControladorProductos implements ActionListener{
+    private Productos producto = new Productos(); 
     private ProductosDAO modelo = new ProductosDAO();
     private VistaProductos vistaProducto;
     private ProductosDAO productosDao;
@@ -30,29 +30,30 @@ public class ControladorProductos implements ActionListener{
         this.vistaProducto.jButEliminar.addActionListener(this);
         this.vistaProducto.jButConsultar.addActionListener(this);
         this.vistaProducto.jButSalir.addActionListener(this);
-        this.vistaProducto.jButnProducto.addActionListener(this);
+        this.vistaProducto.jBNuevoProducto.addActionListener(this);
         this.vistaProducto.setVisible(true);
         
     }
 
-    ControladorProductos(VistaProductos vistaP, VistaMenu vistaM) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     @Override
     public void actionPerformed(ActionEvent e) {
+        
+        
+    
         if(e.getActionCommand() == "Nuevo Producto"){
-            vistaProducto.jButRegistrar.setEnabled(true);
-            vistaProducto.jButConsultar.setEnabled(false);
-            vistaProducto.jButModificar.setEnabled(false);
-            vistaProducto.jButSalir.setEnabled(true);
-            vistaProducto.jButnProducto.setEnabled(false);
-            
-            vistaProducto.jTnomParte.setEditable(true);
-            vistaProducto.jTnomParte.setEditable(true);
-            vistaProducto.jTnomProducto.setEditable(true);
-            vistaProducto.jTprecioVenta.setEditable(true);
-            
+        vistaProducto.jButRegistrar.setEnabled(true);
+        vistaProducto.jButConsultar.setEnabled(true);
+        vistaProducto.jButModificar.setEnabled(true);
+        vistaProducto.jButSalir.setEnabled(true);
+        vistaProducto.jBNuevoProducto.setEnabled(true);
+        
+        
+        
+        vistaProducto.jTnomParte.setEditable(true);
+        vistaProducto.jTcantidad.setEditable(true);
+        vistaProducto.jTnomProducto.setEditable(true);
+        vistaProducto.jTprecioVenta.setEditable(true);
+        
         }
         
         if(e.getActionCommand() == "Registrar"){
@@ -66,9 +67,9 @@ public class ControladorProductos implements ActionListener{
             
             vistaProducto.jButRegistrar.setEnabled(true);
             vistaProducto.jButConsultar.setEnabled(true);
-            vistaProducto.jButModificar.setEnabled(false);
+            vistaProducto.jButModificar.setEnabled(true);
             vistaProducto.jButSalir.setEnabled(true);
-            vistaProducto.jButnProducto.setEnabled(true);
+            vistaProducto.jBNuevoProducto.setEnabled(true);
             
             vistaProducto.jTnomParte.setEditable(true);
             vistaProducto.jTnomParte.setEditable(true);
@@ -82,7 +83,7 @@ public class ControladorProductos implements ActionListener{
             
         }
         
-       /* if(e.getActionCommand() == "Consultar"){
+        if(e.getActionCommand() == "Consultar"){
             ArrayList<Productos> producto = modelo.consultarProducto(vistaProducto.jTnomParte.getText());
             
             if(!producto.isEmpty()){
@@ -91,16 +92,16 @@ public class ControladorProductos implements ActionListener{
                 vistaProducto.jTnomParte.setText(producto.get(0).getNombreParte());
                 vistaProducto.jTnomProducto.setText(producto.get(0).getNombreProducto());
                 vistaProducto.jTprecioVenta.setText(producto.get(0).getPrecioVenta());
-                vistaProducto.jTcantidad.setEditable(false);
-                vistaProducto.jTnomParte.setEditable(false);
-                vistaProducto.jTnomProducto.setEditable(false);
-                vistaProducto.jTprecioVenta.setEnabled(false);
+                vistaProducto.jTcantidad.setEditable(true);
+                vistaProducto.jTnomParte.setEditable(true);
+                vistaProducto.jTnomProducto.setEditable(true);
+                vistaProducto.jTprecioVenta.setEnabled(true);
          
            }else{
-               JOptionPane.showMessageDialog(null, "El Contacto no Existe\n");
+               JOptionPane.showMessageDialog(null, "El Producto no Existe\n");
            }
         
-        }*/
+        }
         
         if(e.getActionCommand() == "Modificar" ){
            String nomParte = vistaProducto.jTnomParte.getText();
@@ -108,15 +109,16 @@ public class ControladorProductos implements ActionListener{
            String cantidad = vistaProducto.jTcantidad.getText();
            String precioVenta = vistaProducto.jTprecioVenta.getText();
            
-           modelo.modificarProducto(new Productos(nomParte,nomProducto,cantidad,precioVenta));
+          this.modelo.modificarProducto(new Productos(nomParte,nomProducto,cantidad,precioVenta));
                      
            vistaProducto.jButConsultar.setEnabled(true);
-           vistaProducto.jButnProducto.setEnabled(true);
+           vistaProducto.jBNuevoProducto.setEnabled(true);
+           vistaProducto.jButModificar.setEnabled(true);
            
-           vistaProducto.jTcantidad.setEditable(false);
-           vistaProducto.jTnomParte.setEditable(false);
-           vistaProducto.jTnomProducto.setEditable(false);
-           vistaProducto.jTprecioVenta.setEnabled(false);
+           vistaProducto.jTcantidad.setEditable(true);
+           vistaProducto.jTnomParte.setEditable(true);
+           vistaProducto.jTnomProducto.setEditable(true);
+           vistaProducto.jTprecioVenta.setEnabled(true);
            
            vistaProducto.jTcantidad.setText("");
            vistaProducto.jTnomParte.setText("");
@@ -126,7 +128,8 @@ public class ControladorProductos implements ActionListener{
        }
         
         if(e.getActionCommand() == "Eliminar"){
-           modelo.eliminarProducto(vistaProducto.jTnomParte.getText());
+           //String numparte= vistaProducto.jTnomParte.getText();
+            modelo.eliminarProducto(String.valueOf(vistaProducto.jTnomParte.getText()));
            
            vistaProducto.jTcantidad.setEditable(false);
            vistaProducto.jTnomProducto.setEditable(false);
@@ -139,11 +142,15 @@ public class ControladorProductos implements ActionListener{
            
        }
         
-        if(e.getSource() == vistaProducto.jButSalir){
-           this.vistaProducto.dispose();
-           this.vistaMenu.setVisible(true);
-       
-       }
+        if ("Salir".equals(e.getActionCommand())){
+            
+            VistaMenu vMenu = new VistaMenu();
+            ControladorMenu controladormenu=new ControladorMenu(vMenu);
+            
+            this.vistaProducto.hide();
+         
+            
+        }
         
     }
     

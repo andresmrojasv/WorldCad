@@ -45,7 +45,7 @@ public class ControladorVendedores implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand() == "Nuevo Vendedor") {
             System.out.println("1");
-            vistavendedor.jBConsultar.setEnabled(false);
+            vistavendedor.jBConsultar.setEnabled(true);
             vistavendedor.jBEliminar.setEnabled(false);
             vistavendedor.jBModificarVendedor.setEnabled(false);
             vistavendedor.jBnuevoCliente.setEnabled(false);
@@ -147,12 +147,11 @@ public class ControladorVendedores implements ActionListener {
             vistavendedor.jTCorreoVendedor.setText("");
         }
         if ("Menu".equals(e.getActionCommand())) {
-            
-           // VistaMenu vistamenu = new VistaMenu();
-           // ControladorMenu controladormenu = new ControladorMenu(vistamenu);
-            //this.vistavendedor.hide();
-            this.vistavendedor.dispose();
-           this.vistamenu.setVisible(true);
+
+            VistaMenu vistamenu = new VistaMenu();
+            ControladorMenu controladormenu = new ControladorMenu(vistamenu);
+            this.vistavendedor.hide();
+          
 
         }
     }

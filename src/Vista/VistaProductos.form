@@ -102,11 +102,11 @@
                       <Component id="jTnomProducto" alignment="0" min="-2" pref="161" max="-2" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Component id="jTnomParte" min="-2" pref="161" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jButnProducto" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                          <Component id="jBNuevoProducto" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="35" max="32767" attributes="0"/>
+                  <EmptySpace pref="16" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -117,7 +117,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jTnomParte" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButnProducto" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jBNuevoProducto" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -142,7 +142,7 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Nombre de Parte"/>
+            <Property name="text" type="java.lang.String" value="Numero de Parte"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
@@ -192,7 +192,7 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JButton" name="jButnProducto">
+        <Component class="javax.swing.JButton" name="jBNuevoProducto">
           <Properties>
             <Property name="text" type="java.lang.String" value="Nuevo Producto"/>
           </Properties>
